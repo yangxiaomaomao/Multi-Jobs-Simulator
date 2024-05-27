@@ -18,9 +18,9 @@ def log_event(ts:float,event:dict,status:str,info):
     ))
     #print_lock.release()
 
-def log_job_info(ts:float,job_id:int,status:str):
-    logging.basicConfig(level=logging.DEBUG,filename="job.txt",filemode = "w")
-    logging.debug("Time[%7.2fs]: job[%2d] %s" % (
-        ts, job_id, status
+def log_job_info(ts:float,job_id:int, event:str, info:str):
+    logging.basicConfig(level=logging.DEBUG,filename="result/trace.csv",filemode = "w")
+    logging.debug("Time[%7.5fms]: Job[%2d], %s, %s" % (
+        ts, job_id, event, info
     ))
 

@@ -1,398 +1,74 @@
-DEBUG:root:Time[0.00000ms]: job[ 0]-iters[ 0]-COMP START -1
-DEBUG:root:Time[2.00000ms]: job[ 0]-iters[ 0]-COMP   END -1
-DEBUG:root:Time[3.00000ms]: job[ 1]-iters[ 0]-COMP   END -1
-DEBUG:root:Time[2.00000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[2.04000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[2.04000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[2.08000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[2.08000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[2.12000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[2.12000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[2.16000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[2.16000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[2.20000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[2.20000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[2.24000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[2.24000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[2.28000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[2.28000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[2.32000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[2.32000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[2.36000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[2.36000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[2.40000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[2.40000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[2.44000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[2.44000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[2.48000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[2.48000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[2.52000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[2.52000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[2.56000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[2.56000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[2.60000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[2.60000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[2.64000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[2.64000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[2.68000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[2.68000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[2.72000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[2.72000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[2.76000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[2.76000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[2.80000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[2.80000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[2.84000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[2.84000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[2.88000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[2.88000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[2.92000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[2.92000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[2.96000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[2.96000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[3.00000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[3.00000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[3.04000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[3.00000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[3.04000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[3.00000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[3.04000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[3.08000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[3.04000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[3.08000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[3.12000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[3.08000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[3.16000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[3.08000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[3.16000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[3.08000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[3.08000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[3.08000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[3.16000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[3.08000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[3.12000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[3.16000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[3.16000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[3.16000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[3.24000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[3.16000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[3.16000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[3.16000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[3.16000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[3.24000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[3.20000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[3.24000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[3.24000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[3.24000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[3.24000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[3.24000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[3.32000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[3.24000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[3.32000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[3.28000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[3.24000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[3.32000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[3.32000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[3.32000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[3.32000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[3.32000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[3.40000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[3.32000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[3.36000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[3.40000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[3.32000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[3.40000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[3.40000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[3.40000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[3.48000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[3.40000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[3.40000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[3.40000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[3.40000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[3.48000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[3.44000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[3.48000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[3.48000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[3.48000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[3.48000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[3.48000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[3.48000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[3.56000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[3.56000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[3.52000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[3.56000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[3.48000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[3.56000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[3.56000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[3.64000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[3.56000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[3.56000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[3.56000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[3.56000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[3.60000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[3.64000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[3.64000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[3.64000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[3.64000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[3.64000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[3.64000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[3.64000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[3.72000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[3.68000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[3.72000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[3.72000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[3.64000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[3.72000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[3.72000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[3.80000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[3.72000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[3.72000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[3.72000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[3.72000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[3.80000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[3.80000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[3.76000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[3.80000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[3.80000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[3.80000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[3.80000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[3.80000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[3.88000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[3.88000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[3.88000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[3.84000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[3.80000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[3.88000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[3.88000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[3.96000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[3.88000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[3.88000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[3.88000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[3.88000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[3.96000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[3.92000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[3.96000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[3.96000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[3.96000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[3.96000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[3.96000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[3.96000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[4.04000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[4.04000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[4.04000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[4.00000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[3.96000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[4.04000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[4.04000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[4.12000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[4.04000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[4.04000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[4.04000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[4.04000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[4.12000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[4.12000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[4.08000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[4.12000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[4.12000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[4.20000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[4.12000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[4.12000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[4.12000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[4.12000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[4.20000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[4.20000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[4.16000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[4.20000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[4.20000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[4.20000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[4.20000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[4.20000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[4.28000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[4.28000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[4.28000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[4.24000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[4.20000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[4.28000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[4.28000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[4.28000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[4.28000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[4.36000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[4.28000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[4.36000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[4.32000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[4.28000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[4.36000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[4.36000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[4.36000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[4.44000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[4.36000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[4.36000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[4.36000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[4.36000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[4.44000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[4.40000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[4.44000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[4.44000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[4.44000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[4.44000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[4.44000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[4.44000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[4.52000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[4.52000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[4.48000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[4.52000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[4.44000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[4.52000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[4.52000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[4.52000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[4.52000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[4.52000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[4.60000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[4.60000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[4.60000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[4.56000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[4.52000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[4.60000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[4.60000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[4.68000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[4.60000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[4.60000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[4.60000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[4.60000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[4.68000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[4.64000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[4.68000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[4.68000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[4.68000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[4.68000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[4.68000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[4.68000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[4.76000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[4.76000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[4.72000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[4.76000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[4.68000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[4.76000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[4.76000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[4.76000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[4.76000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[4.84000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[4.76000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[4.84000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[4.80000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[4.76000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[4.84000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[4.84000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[4.84000ms]: job[ 0]-iters[ 0]-COMM START 0
-DEBUG:root:Time[4.84000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[4.84000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[4.84000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[4.92000ms]: job[ 0]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[4.88000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[4.92000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[4.92000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[4.84000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[4.88000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[4.92000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[4.96000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[4.92000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[4.92000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[4.92000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[5.00000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[5.00000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[4.96000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[5.00000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[5.00000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[5.00000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[5.00000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[5.04000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[5.04000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[5.08000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[5.08000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[5.08000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[5.16000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[5.08000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[5.08000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[5.08000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[5.12000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[5.12000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[5.16000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[5.16000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[5.16000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[5.16000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[5.16000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[5.24000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[5.24000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[5.20000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[5.20000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[5.24000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[5.24000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[5.24000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[5.24000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[5.28000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[5.32000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[5.32000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[5.28000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[5.32000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[5.36000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[5.32000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[5.32000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[5.32000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[5.40000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[5.40000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[5.36000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[5.40000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[5.44000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[5.40000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[5.40000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[5.40000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[5.48000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[5.44000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[5.48000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[5.48000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[5.48000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[5.48000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[5.48000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[5.56000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[5.52000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[5.56000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[5.52000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[5.56000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[5.56000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[5.56000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[5.60000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[5.60000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[5.64000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[5.56000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[5.64000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[5.64000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[5.64000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[5.64000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[5.72000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[5.64000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[5.68000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[5.68000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[5.72000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[5.72000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[5.80000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[5.72000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[5.72000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[5.72000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[5.76000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[5.76000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[5.80000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[5.80000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[5.80000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[5.80000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[5.80000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[5.88000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[5.88000ms]: job[ 1]-iters[ 0]-COMM   END 1
-DEBUG:root:Time[5.84000ms]: job[ 1]-iters[ 0]-COMM   END 2
-DEBUG:root:Time[5.84000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[5.88000ms]: job[ 1]-iters[ 0]-COMM START 0
-DEBUG:root:Time[5.88000ms]: job[ 1]-iters[ 0]-COMM START 3
-DEBUG:root:Time[5.88000ms]: job[ 1]-iters[ 0]-COMM START 1
-DEBUG:root:Time[5.88000ms]: job[ 1]-iters[ 0]-COMM START 2
-DEBUG:root:Time[5.92000ms]: job[ 1]-iters[ 0]-COMM   END 0
-DEBUG:root:Time[5.96000ms]: job[ 1]-iters[ 0]-COMM   END 3
-DEBUG:root:Time[5.96000ms]: job[ 1]-iters[ 0]-COMM   END 1
+Time[ 0.00ms]: Job[debug1-2] arrive
+Time[ 0.00ms]: Job[debug2-2] arrive
+Time[ 0.00ms]: Job[debug1-2] start
+Time[ 0.00ms]: Job[debug2-2] start
+Job[1] cost  0.00ms in iter 0
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [20, 20], 'using': 1}}
+Job[0] iter[ 0] pkt[ 0] time_cost:20.00 cl:2 gv:20.00 j.min:20.00
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [20, 20], 'using': 1}}
+Job[1] iter[ 0] pkt[ 0] time_cost:4.00 cl:2 gv:20.00 j.min:20.00
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [20, 24.0], 'using': 1}}
+Job[1] iter[ 0] pkt[ 1] time_cost:4.00 cl:2 gv:24.00 j.min:24.00
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [24.0, 28.0], 'using': 1}}
+Job[1] iter[ 0] pkt[ 2] time_cost:4.00 cl:2 gv:28.00 j.min:28.00
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [28.0, 32.0], 'using': 1}}
+Job[1] iter[ 0] pkt[ 3] time_cost:4.00 cl:2 gv:32.00 j.min:32.00
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [32.0, 36.0], 'using': 1}}
+Job[1] iter[ 0] pkt[ 4] time_cost:4.00 cl:2 gv:36.00 j.min:36.00
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [36.0, 40.0], 'using': 1}}
+Job[0] iter[ 0] pkt[ 1] time_cost:20.00 cl:2 gv:40.00 j.min:40.00
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [36.0, 40.0], 'using': 1}}
+Job[1] iter[ 0] pkt[ 5] time_cost:4.00 cl:2 gv:40.00 j.min:40.00
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [40.0, 44.0], 'using': 1}}
+Job[1] iter[ 0] pkt[ 6] time_cost:4.00 cl:2 gv:44.00 j.min:44.00
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [44.0, 48.0], 'using': 1}}
+Job[1] iter[ 0] pkt[ 7] time_cost:4.00 cl:2 gv:48.00 j.min:48.00
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [48.0, 52.0], 'using': 1}}
+Job[1] iter[ 0] pkt[ 8] time_cost:4.00 cl:2 gv:52.00 j.min:52.00
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [52.0, 56.0], 'using': 1}}
+Job[1] iter[ 0] pkt[ 9] time_cost:4.00 cl:2 gv:56.00 j.min:56.00
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [56.0, 60.0], 'using': 0}}
+Job[0] iter[ 0] pkt[ 2] time_cost:10.00 cl:1 gv:60.00 j.min:inf
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [56.0, 60.0], 'using': 0}}
+Job[0] iter[ 0] pkt[ 3] time_cost:10.00 cl:1 gv:70.00 j.min:inf
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [56.0, 60.0], 'using': 0}}
+Job[0] iter[ 0] pkt[ 4] time_cost:10.00 cl:1 gv:80.00 j.min:inf
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [56.0, 60.0], 'using': 0}}
+Job[0] iter[ 0] pkt[ 5] time_cost:10.00 cl:1 gv:90.00 j.min:inf
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [56.0, 60.0], 'using': 0}}
+Job[0] iter[ 0] pkt[ 6] time_cost:10.00 cl:1 gv:100.00 j.min:inf
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [56.0, 60.0], 'using': 0}}
+Job[0] iter[ 0] pkt[ 7] time_cost:10.00 cl:1 gv:110.00 j.min:inf
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [56.0, 60.0], 'using': 0}}
+Job[0] iter[ 0] pkt[ 8] time_cost:10.00 cl:1 gv:120.00 j.min:inf
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [56.0, 60.0], 'using': 0}}
+Job[0] iter[ 0] pkt[ 9] time_cost:10.00 cl:1 gv:130.00 j.min:inf
+999
+Job[1] cost 60.00ms in iter 1
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [130.0, 140.0], 'using': 0}}
+Time[140.00ms]: Job[debug1-2] finish, iter:[140.00ms]
+[]
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [80.0, 80.0], 'using': 1}}
+Job[1] iter[ 1] pkt[ 0] time_cost:2.00 cl:1 gv:80.00 j.min:80.00
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [80.0, 82.0], 'using': 1}}
+Job[1] iter[ 1] pkt[ 1] time_cost:2.00 cl:1 gv:82.00 j.min:82.00
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [82.0, 84.0], 'using': 1}}
+Job[1] iter[ 1] pkt[ 2] time_cost:2.00 cl:1 gv:84.00 j.min:84.00
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [84.0, 86.0], 'using': 1}}
+Job[1] iter[ 1] pkt[ 3] time_cost:2.00 cl:1 gv:86.00 j.min:86.00
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [86.0, 88.0], 'using': 1}}
+Job[1] iter[ 1] pkt[ 4] time_cost:2.00 cl:1 gv:88.00 j.min:88.00
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [88.0, 90.0], 'using': 1}}
+Job[1] iter[ 1] pkt[ 5] time_cost:2.00 cl:1 gv:90.00 j.min:90.00
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [90.0, 92.0], 'using': 1}}
+Job[1] iter[ 1] pkt[ 6] time_cost:2.00 cl:1 gv:92.00 j.min:92.00
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [92.0, 94.0], 'using': 1}}
+Job[1] iter[ 1] pkt[ 7] time_cost:2.00 cl:1 gv:94.00 j.min:94.00
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [94.0, 96.0], 'using': 1}}
+Job[1] iter[ 1] pkt[ 8] time_cost:2.00 cl:1 gv:96.00 j.min:96.00
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [96.0, 98.0], 'using': 1}}
+Job[1] iter[ 1] pkt[ 9] time_cost:2.00 cl:1 gv:98.00 j.min:98.00
+999
+{0: {'node': <node.node object at 0x7f6ade2ccbb0>, 'ts': [98.0, 100.0], 'using': 0}}
+Time[100.00ms]: Job[debug2-2] finish, iter:[50.00ms]
+[60.0]

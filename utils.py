@@ -1,6 +1,6 @@
 import math
 import numpy as np
-
+import os
 MEGA = 10 ** 6
 VOCAB_SIZE = 50000
 NLP_PARAM_SIZE = 2
@@ -127,3 +127,6 @@ def get_comm_time(job):
         return 0.235 * all_reduce_size + 0.014
     elif worker_num == 4:
         return 0.595 * all_reduce_size + 0.017
+    
+
+    
