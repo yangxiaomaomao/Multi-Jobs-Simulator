@@ -1,7 +1,6 @@
 import logging
 import threading
 import sys
-print_lock = threading.Lock()
 # 设置打印日志的级别，level级别以上的日志会打印出
 # level=logging.DEBUG 、INFO 、WARNING、ERROR、CRITICAL
 #logging.basicConfig(level=logging.DEBUG,filename="res.txt",filemode = "w")
@@ -13,14 +12,13 @@ print_lock = threading.Lock()
 def log_event(ts:float,event:dict,status:str,info):
     return 
     logging.basicConfig(level=logging.DEBUG,filename="event.txt",filemode = "w")
-    logging.debug("Time[%7.5fms]: job[%2d]-iters[%2d]-%4s %5s %d" % (
+    logging.debug("Time[%7.5f ms]: job[%2d]-iters[%2d]-%4s %5s %d" % (
         ts, event["job_id"], event["iters"], event["type"], status, info
     ))
-    #print_lock.release()
 
-def log_job_info(ts:float,job_id:int, event:str, info:str):
-    logging.basicConfig(level=logging.DEBUG,filename="result/trace.csv",filemode = "w")
-    logging.debug("Time[%7.5fms]: Job[%2d], %s, %s" % (
+def log_job_info(ts:float,job_id:int, event:str, info:str, filename:str):
+    logging.basicConfig(level=logging.DEBUG,filename=filename,filemode = "w")
+    logging.debug("Time[%7.5f ms]: Job[%2d], %s, %s" % (
         ts, job_id, event, info
     ))
 

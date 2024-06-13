@@ -1,9 +1,13 @@
+import sys
+import os
 class scheduler():
     def __init__(self, gv, cluster, sched_name, placer_name):
         self.gv = gv
         self.cluster = cluster
         self.sched_name = sched_name
         self.placer_name = placer_name
+        
+        self.comb_name = "%s-%s" % (sched_name, placer_name)
         
         print("Scheduler[%s][%s] init......" % (self.sched_name, self.placer_name))
         
@@ -22,20 +26,10 @@ class scheduler():
     # "ARRIVE": job arrives, decide whether to place it
     # "END": job ends, decide whether to place the pending jobs
     def sched_and_place(self, job):
-        # if job.job_id == 0:
-        #     placement = ["G0","G4"]
-        # else:
-        #     placement = ["G1","G5"]
-        # selected_job = job
-        # self.cluster.set_gpu_busy(placement, selected_job.job_id)
-        # selected_job.local_ts = self.gv.get_global_time()
-        # selected_job.gpus_use = placement
-        # selected_job.node_load = self.cluster.get_nodeload_from_id(selected_job.param_mat, selected_job.gpus_use)
-        # selected_job.node_use_list = list(selected_job.node_load.keys())
-        # selected_job.init_node_runtime(selected_job.node_use_list, selected_job.local_ts, 0)
-        # selected_job.set_status("RUNNING")
-        # selected_job.sig = True
-        # return 
+        if self.gv.no_job():
+            print("All jobs finish!")
+            os.system("kill -9 %d" % os.getpid())
+            
         self.cluster.add_node_barrier()
         while 1:
             
@@ -59,11 +53,26 @@ class scheduler():
                 ret_jobs_list.sort(key=lambda job: job.iter_time * job.iter_num)
             elif self.sched_name == "gputime-shortest":
                 ret_jobs_list.sort(key=lambda job: job.iter_time * job.iter_num * job.worker_num)
+            else:
+                print("Don't support the scheduler")
+                sys.exit(0)
                 
             selected_job = ret_jobs_list[0]
             worker_num = selected_job.worker_num
             if self.placer_name == "consolidate":
                 placement = self.cluster.consolidate_placement(worker_num)
+                # print(job.label,"ooooooooo")
+                # if job.label == "vgg16-2":
+                #     placement = ["G0","G1"]
+                # elif job.label == "resnet50-2":
+                #     placement = ["G2","G4"]
+                # elif job.label == "vgg16-4":
+                #     placement = ["G2","G3","G4","G5"]
+                # elif job.label == "resnet50-4":
+                #     placement = ["G2","G3","G4","G5"]
+                # elif job.label == "gpt-4":
+                #     placement = ["G0","G1","G4","G5"]
+                #placement = ["G0","G1"]
             elif self.placer_name == "load_balance":
                 placement = self.cluster.load_balance_placement(worker_num)
             
@@ -86,6 +95,7 @@ class scheduler():
             
             if not placement:
                 break
+        
         self.cluster.remove_node_barrier()
             
             

@@ -50,8 +50,8 @@ class Cluster():
 
             for j in range(i * self.gpus_per_machine, (i + 1) * self.gpus_per_machine):
                 
-                if j == 6 or j == 7:
-                    continue
+                # if j == 6 or j == 7:
+                #     continue
                 machine_graph.add_node("G%d" % j, job_id = -1)
                 machine_graph.add_edge("P%d" % i, "G%d" % j)
                 
@@ -105,18 +105,21 @@ class Cluster():
             return dict()
         #print(worker_num)
         node_load_dict = dict()
-        for i in range(worker_num - 1, -1, -1): # to circle, placement = [2,3,4,5]->(2,3) and (3,4) and (4,5) and (5,2)
-            node_path = nx.dijkstra_path(self.graph, l[i],l[i - 1])[1:-1]# exclude the src and dst
-            if len(node_path) > 2:
-                node_path = node_path[0:-1]
-            #print(l[i],l[i - 1],node_path,i,i-1)
-            data_size = max(param_mat[i][i - 1], param_mat[i - 1][i]) 
-            #print(l[i],l[i - 1],node_path,i,i-1, data_size)
-            for node_name in node_path:
-                if node_name not in node_load_dict.keys():
-                    node_load_dict[node_name] = data_size
-                else:
-                    node_load_dict[node_name] += data_size
+        for i in range(worker_num): # to circle, placement = [2,3,4,5]->(2,3) and (3,4) and (4,5) and (5,2)
+            for j in range(worker_num):
+                if i == j:
+                    continue
+                node_path = nx.dijkstra_path(self.graph, l[i],l[j])[1:-1]# exclude the src and dst
+                if len(node_path) > 2:
+                    node_path = node_path[0:-1]
+                #print(l[i],l[i - 1],node_path,i,i-1)
+                data_size = param_mat[i][j]
+                #print(l[i],l[j],node_path,i,j,data_size)
+                for node_name in node_path:
+                    if node_name not in node_load_dict.keys():
+                        node_load_dict[node_name] = data_size
+                    else:
+                        node_load_dict[node_name] += data_size
         #print(node_load_dict)
         return {self.graph.nodes[k]["node"]:v for k,v in node_load_dict.items() if k != "TOR"}         
 

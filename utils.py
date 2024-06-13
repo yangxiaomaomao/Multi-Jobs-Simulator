@@ -22,7 +22,7 @@ def get_tp_peer_traffic_size(job:dict):
     tp = parallel_spec["tp"]
 
     pp = parallel_spec["pp"]
-    per_stage_layers = num_layers / pp / tp
+    per_stage_layers = num_layers / pp
     assert num_layers % pp == 0 # ensure layers can be divided by pp nums
     
     # 2 means the size of mlp and self-attention is the same
@@ -31,7 +31,7 @@ def get_tp_peer_traffic_size(job:dict):
     tp_trans_size = forward_allreduce + backward_allreduce
     
     # /2means single direction only
-    tp_peer_traffic_size = tp_trans_size / MEGA * (tp - 1) / tp * 2 / 2
+    tp_peer_traffic_size = tp_trans_size / MEGA * (tp - 1) / tp * 2
     print(tp_peer_traffic_size)
     return tp_peer_traffic_size
 # the traffic between 1-3,3-5,2-4,4-6

@@ -8,7 +8,7 @@ from safeDict import ThreadSafeDict
 import random
 
 class job():
-    def __init__(self, job_id, comp_time, param_mat, param_size, arrive_ts, iter_num, iter_time, cluster, gv:global_var, label:str, scheduler):
+    def __init__(self, job_id, comp_time, param_mat, param_size, arrive_ts, iter_num, iter_time, cluster, gv:global_var, label:str, scheduler, startup_overhead):
         self.job_id = job_id
         self.comp_time = comp_time
         self.param_mat = param_mat
@@ -33,12 +33,15 @@ class job():
         self.status_lock = Lock()
 
         self.iter_counter = 0
+        self.startup_overhead = startup_overhead
         self.recorder = dict()
         self.gpus_use = list()
         self.sig = True
 
         self.status = "PENDING" # PENDING RUNNING OVER
-        log_job_info(self.local_ts, self.job_id, "ARRIVE", self.label)
+        self.record_pth = "result/%s.csv" % self.scheduler.comb_name
+        
+        log_job_info(self.local_ts, self.job_id, "ARRIVE", self.label, self.record_pth)
         print("Time[%5.2fms]: Job[%s] arrives %s" % (self.local_ts, self.job_id, self.label))
 
 
@@ -90,7 +93,7 @@ class job():
         if self.status == "PENDING":
             return self.arrive_ts
         if self.worker_num == 1:
-            return self.iter_time * self.iter_counter + self.start_ts + 10 * 1000 / 40
+            return self.iter_time * self.iter_counter + self.start_ts + self.startup_overhead * 1000 / self.gv.scale_factor
         
         return self.node_runtime_dict.min_value()
     
@@ -116,10 +119,11 @@ class job():
             
     def generate_event(self):
         while 1:
-            time.sleep(random.uniform(0, 0.05))
+            time.sleep(random.uniform(0, 0.5))
             if self.sig == False:
                 continue
-
+            if self.job_id == -1:
+                print(22)
             global_time = self.gv.get_global_time()
             # if self.worker_num == 2:
             #     print(global_time, self.get_local_ts(), self.job_id)
@@ -131,7 +135,7 @@ class job():
                 # not enough gpus
                 if not self.gpus_use:
                     continue
-
+                
                 #print("Job[%s] is placed on %s" % (self.label, self.gpus_use))
                 
                 if 0:
@@ -158,7 +162,7 @@ class job():
                     elif "resnet50_1" in self.label:
                         self.gpus_use = ["G2","G3"]                        
 
-                log_job_info(self.start_ts, self.job_id, "START", "-".join(self.gpus_use))
+                log_job_info(self.start_ts, self.job_id, "START", "-".join(self.gpus_use), self.record_pth)
                 print("Time[%5.2fms]: Job[%s] start in %s" % (self.start_ts, self.label, "-".join(self.gpus_use)))
                 
                 break
@@ -166,17 +170,15 @@ class job():
         self.local_ts = self.get_local_ts()
 
         while 1:
-            time.sleep(random.uniform(0, 0.05))
+            time.sleep(random.uniform(0, 0.5))
             if self.iter_counter >= self.iter_num:
                 self.local_ts = self.get_local_ts()
-                log_job_info(self.local_ts, self.job_id, "END", self.local_ts - self.arrive_ts)
+                log_job_info(self.local_ts, self.job_id, "END", self.local_ts - self.arrive_ts, self.record_pth)
                 print("Time[%5.2fms]: Job[%s] ends in %s" % (self.get_local_ts(), self.label, self.local_ts - self.arrive_ts))
                 
                 self.set_status("OVER")
                 self.cluster.set_gpu_free(self.gpus_use)
                 self.scheduler.sched_and_place(self)
-                #print("record",self.recorder)
-                #print(self.adjacent_differences(iter_time_list),iter_time_list)
                 break
 
             self.local_ts = self.get_local_ts()
@@ -184,7 +186,7 @@ class job():
             if self.local_ts <= self.gv.get_global_time():
                 if self.is_comp():
                     if self.iter_counter == 0:
-                        self.init_node_runtime(self.node_use_list, self.local_ts + self.comp_time + 10 * 1000 / 40, 0)
+                        self.init_node_runtime(self.node_use_list, self.local_ts + self.comp_time + self.startup_overhead * 1000 / self.gv.scale_factor, 0)
                     else:
                         self.init_node_runtime(self.node_use_list, self.local_ts + self.comp_time, 0)
                     self.switch_pattern()
@@ -215,15 +217,15 @@ class job():
                     
                     self.iter_counter += 1
                     
-                    lcoal_ts = self.get_local_ts()
-                    self.recorder[self.iter_counter - 1] = lcoal_ts
+                    local_ts = self.get_local_ts()
+                    self.recorder[self.iter_counter - 1] = local_ts
 
                     if self.iter_counter == 1:
                         print("Job[%d] iter[%d] cost %5.2fms" % (
-                            self.job_id, self.iter_counter - 1,lcoal_ts - self.start_ts))
+                            self.job_id, self.iter_counter - 1,local_ts - self.start_ts))
                     else:
                         print("Job[%d] iter[%d] cost %5.2fms" % (
-                            self.job_id, self.iter_counter - 1, lcoal_ts - self.recorder[self.iter_counter - 2]))
+                            self.job_id, self.iter_counter - 1, local_ts - self.recorder[self.iter_counter - 2]))
                     
                 
             

@@ -8,50 +8,35 @@ import model_config
 from model_config import parse_job_trace
 import test
 from scheduler import scheduler
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-s', '--scheduler', default='fifo', type=str, help='the scheduler order,[fifo|smallerst|time-shortest|gputime-shortest]')
+parser.add_argument('-p', '--placement', default='consolidate', type=str, help='the placement scheme,[consolidate]')
+
+parser.add_argument('-gem', '--gpu-per-machine', default=4, type=int, help='gpu num per machine')
+parser.add_argument('-mn', '--machine-num', default=4, type=int, help='machine num in the cluster')
+parser.add_argument('-d', '--division', default=10, type=int, help='the division num of each packet')
+parser.add_argument('-sf', '--scale-factor', default=40, type=int, help='the scale factor of the true exp, the less, the quicker and unpreciser')
+
+parser.add_argument('-tr', '--trace-file', default="trace/job_trace.json", type=str, help='the trace of the jobs')
+args = parser.parse_args()
+
+
 # global vars
-gv = global_var(0)
+gv = global_var(0, args.scale_factor)
 ee = Gpu(gv)
-
-
-
-
-
-# if 0:
-#     job_name_list = [
-#         # model_config.debug1_2_job,
-#         # model_config.debug2_2_job,
-#         model_config.debug4_4_job,
-#     ]
-#     cluster = Cluster(10 * 1000, 1 * 1000, division, gv, machine_num = 1, gpus_per_machine = 4)
-# else:
-#     job_name_list = [
-#         test.vgg16_1,
-#         test.resnet50_1,
-#         test.vgg16_2,
-#         test.resnet50_2,
-#         #model_config.pp1tp2_job,
-#         #model_config.pp2tp1_job,
-#         # model_config.vgg16_2_job,
-#         # model_config.resnet50_2_job,
-#         #model_config.mobilenet_2_job,
-#     ]
-#     #cluster = Cluster(4, 4, 7.875 * 1000, 10/8 * 1000 * 2, division, gv)
-#     cluster = Cluster(8.3 * 1000, 10/8 * 1000 * 2, division, gv, machine_num = 1, gpus_per_machine = 4)
 # init jobs
-division = 30
-cluster = Cluster(8.3 * 1000, 10/8 * 1000 * 2, division, gv, machine_num = 2, gpus_per_machine = 4)
-scheduler = scheduler(gv, cluster, "fifo", "consolidate")
+division = args.division
+cluster = Cluster(8.55 * 1000, 10/8 * 1000 * 2, division, gv, machine_num = args.machine_num, gpus_per_machine = args.gpu_per_machine)
+scheduler = scheduler(gv, cluster, args.scheduler, args.placement)
 
-jobs_list = parse_job_trace("trace/job_trace.json", cluster, gv, scheduler)
+jobs_list = parse_job_trace(args.trace_file, cluster, args.scale_factor, gv, scheduler)
 
 # start jobs
 for job in jobs_list:
     Thread(target=job.generate_event,).start()
-
-# start computer
-#Thread(target=ee.exec_event,).start()
-#event_thread.start()
-
+    
 # start comm node
 for node_name in cluster.graph.nodes:
     #print(node_name)

@@ -7,6 +7,7 @@ import time
 import numpy as np
 from decimal import Decimal
 import random
+from job import job
 
 class node():
     def __init__(self, cap, division, max_packet, gv, node_id, node_type):
@@ -38,7 +39,7 @@ class node():
     def wake_job(self, job_id):
         self.gv.jobs_trace[job_id].jwake(self.node_id)
     
-    def get_contention_num(self, j):
+    def get_contention_num(self, j:job):
         res = 1
         for i in list(self.job_dict.keys()):
             job = self.gv.jobs_trace[i]
@@ -55,7 +56,7 @@ class node():
         return res
 
 
-    def update_job_ts(self, job, ts):
+    def update_job_ts(self, job:job, ts):
         #print(job.node_runtime_dict[self.node_id]["ts"])
         #print(self.node_id, ts)
         #print(self.node_id, self.node_type, ts)
@@ -66,7 +67,7 @@ class node():
         #job.local_ts = max(list(job.local_ts_dict.values()))
         #print(self.node_id,job.node_runtime_dict.dict)
 
-    def add_event(self,event:dict,job):
+    def add_event(self,event:dict,job:job):
         job_id = event["job_id"]
         
         self.job_dict[job_id] = Queue(maxsize=1000)
@@ -83,7 +84,7 @@ class node():
                     )
                 ) 
         
-    def is_tmp(self, job):
+    def is_tmp(self, job:job):
         #self.tiny_queue_lock.acquire()
         job_node_ts = job.local_ts_dict[self.node_id]
         node_ts_list = dict()
@@ -111,7 +112,7 @@ class node():
         while 1:
             if self.sched_barrier == 1:
                 continue
-            time.sleep(random.uniform(0, 0.05))
+            time.sleep(random.uniform(0, 0.5))
             for job_id in list(self.job_dict.keys()):
                 
                 job_queue = self.job_dict[job_id]
@@ -134,20 +135,23 @@ class node():
                         #print("cl",contention_level,job.job_id,job.node_runtime_dict.dict)
                         #time_cost = (0.235 * (packet.pkt_size * self.division) + 0.027) / self.division * contention_level  / 2
                         if self.node_type != "NIC":
-                            if "mobilenet" in job.label:
+                            if "mobilenetsss" in job.label:
                                 cap = 7.69 * 1000
-                            elif "-4" in job.label:
-                                cap = 10 * 1000
+                            elif "-4" in job.label and "gpt" not in job.label:
+                                cap = 10.08 * 1000
                             else:
                                 cap = self.cap
                             time_cost = packet.pkt_size / (cap / contention_level) * 1000
+                            #print(packet.pkt_size,time_cost,contention_level,cap)
                         else:
                             # 2 means only consider single-direction
-                            time_cost = (packet.pkt_size * packet.pkt_num / 2 * 0.000889 + 0.00069) * 1000 / packet.pkt_num * contention_level
+                            time_cost = (packet.pkt_size * packet.pkt_num / 2 * 0.89) / packet.pkt_num * contention_level
+                            #print(time_cost)
                             #print((packet.pkt_size * packet.pkt_num / 2 * 0.89 + 27))
                         #print(self.get_scale_factor(packet))
-                        dev = 0.0
+                        dev = 0
                         time_cost *= random.uniform(1-dev, 1+dev)
+                        
                         #time_cost *= self.get_scale_factor(packet)
                         if job.job_id == -1:
                             print("Node[%d] Job[%d] iter[%2d] pkt[%2d] time_cost:%.2f cl:%d gv:%.2f %.2f" % 
@@ -165,7 +169,7 @@ class node():
                             self.wake_job(job_id)
                             
 
-    def is_node_turn(self, job):
+    def is_node_turn(self, job:job):
         min_tiny_packet = min(job.tiny_packet_counter.values())
         return job.tiny_packet_counter[self.node_id] == min_tiny_packet
     
