@@ -1,25 +1,20 @@
 import sys
 import os
-class scheduler():
-    def __init__(self, gv, cluster, sched_name, placer_name):
+from color import RED, GREEN, RESET, BLUE
+from global_var import global_var
+from cluster import Cluster
+
+class Scheduler():
+    def __init__(self, gv:global_var, cluster:Cluster):
         self.gv = gv
         self.cluster = cluster
-        self.sched_name = sched_name
-        self.placer_name = placer_name
         
-        self.comb_name = "%s-%s" % (sched_name, placer_name)
+        self.sched_name = self.gv.sched_name
+        self.placer_name = self.gv.placer_name
         
-        print("Scheduler[%s][%s] init......" % (self.sched_name, self.placer_name))
+        self.comb_name = "%s-%s" % (self.sched_name, self.placer_name)
         
-    
-    def get_pending_jobs(self):
-        ret_jobs_list = list()
-        for job_id in self.gv.jobs_trace:
-            # job has arrived and is pending
-            job = self.gv.jobs_trace[job_id]
-            if job.status == "PENDING" and job.get_local_ts() <= self.gv.get_global_time():
-                ret_jobs_list.append(job)
-        return ret_jobs_list
+        print(f"Scheduler initializing...... [{BLUE}%s * %s{RESET}]" % (self.sched_name, self.placer_name))
     
     
     # option represent the sched time
@@ -28,19 +23,18 @@ class scheduler():
     def sched_and_place(self, job):
         if self.gv.no_job():
             print("All jobs finish!")
+            self.gv.write_trace()
+            self.cluster.dump_load()
             os.system("kill -9 %d" % os.getpid())
             
         self.cluster.add_node_barrier()
         while 1:
-            
-            ret_jobs_list = self.get_pending_jobs()
+            ret_jobs_list = self.gv.get_pending_jobs()
             
             if len(ret_jobs_list) == 0:
                 self.cluster.remove_node_barrier()
                 return
-            # if job.status == "PENDING":
-            #     assert len(ret_jobs_list) > 0
-            #print(job)
+
             job_status = job.status
             job_id = job.job_id
 
@@ -60,7 +54,7 @@ class scheduler():
             selected_job = ret_jobs_list[0]
             worker_num = selected_job.worker_num
             if self.placer_name == "consolidate":
-                placement = self.cluster.consolidate_placement(worker_num)
+                placement = self.cluster.consolidate_placement(selected_job)
                 # print(job.label,"ooooooooo")
                 # if job.label == "vgg16-2":
                 #     placement = ["G0","G1"]
@@ -72,10 +66,13 @@ class scheduler():
                 #     placement = ["G2","G3","G4","G5"]
                 # elif job.label == "gpt-4":
                 #     placement = ["G0","G1","G4","G5"]
+                # elif job.job_id == 0:
+                #     placement = ["G0","G1"]
+                # elif job.job_id == 2:
+                #     placement = ["G2","G4"]
                 #placement = ["G0","G1"]
             elif self.placer_name == "load_balance":
-                placement = self.cluster.load_balance_placement(worker_num)
-            
+                placement = self.cluster.load_balance_placement(selected_job)
             if placement:
                 print("Job[%d] is placed on %s" % (selected_job.job_id, placement))
             
@@ -88,7 +85,7 @@ class scheduler():
                 selected_job.node_use_list = list(selected_job.node_load.keys())
                 selected_job.init_node_runtime(selected_job.node_use_list, selected_job.local_ts, 0)
                 selected_job.start_ts = self.gv.get_global_time()
-                selected_job.set_status("RUNNING")
+                selected_job.status = "RUNNING"
                 selected_job.sig = True
             else:
                 job.sig = False

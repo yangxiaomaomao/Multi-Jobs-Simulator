@@ -20,12 +20,20 @@ class ThreadSafeDict:
                 using_list.append(v["using"]) 
             return sum(using_list) == 0
     def min_value(self):
-        sig = self.all_not_using()
+        #sig = self.all_not_using()
         with self.lock:
+            using_list = list()
+            for k,v in self.dict.items():
+                using_list.append(v["using"]) 
+            sig = (sum(using_list) == 0)
+            # 如果所有节点都没有使用，说明所有节点都是空闲的，此时通信阶段
+            # 已经结束，此时所有节点的最大时间就是local ts
+            # 这个local ts将会被用来计算下一个iteration的开始(COMP)
             if sig:# there is not using
                 ret = float("-inf")
                 for node_id, node_runtime_info in self.dict.items():
                     ret = max(ret, node_runtime_info["ts"][1])
+            # 如果有正在使用的节点，那么返回正在使用的最小的节点时间作为local ts
             else:
                 ret = float("inf")
                 for node_id, node_runtime_info in self.dict.items():
@@ -42,6 +50,9 @@ class ThreadSafeDict:
             return ret
     def init_node(self, node_list, ts, using):
         with self.lock:
+            # ts[0]代表上次使用的ts，ts[1]代表当前使用的ts
+            # ts[0]作用是为了判断contention程度，在计算local ts时候
+            # 都使用ts[1]
             for node in node_list:
                 self.dict[node.node_id] = {
                     "node":node,

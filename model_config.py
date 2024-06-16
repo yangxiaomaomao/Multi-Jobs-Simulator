@@ -6,6 +6,7 @@ import json
 import sys
 import os
 import copy
+from color import RED, GREEN, RESET, BLUE
 
 pp4tp1_job = {
     "iter_time":252.67,
@@ -57,7 +58,7 @@ pp1tp4_job = {
 }
 pp2tp1_job = {
     "iter_time":308,
-    "comp_time":282.27, # comm_time = 26.5
+    "comp_time":282.27, # comm_time = 25.73
     "param_mat":np.array([
         [0.0, 110], 
         [110, 0.0]
@@ -82,6 +83,7 @@ pp1tp2_job = {
     "iters":1,
     "startup":11.8, #s
 }
+
 vgg16_1_job = {
     "iter_time":22.18,
     "comp_time":22.18,
@@ -123,6 +125,7 @@ vgg16_4_job = {
     "arrive_time":-1,
     "startup":9.4, #s
 }
+
 resnet50_1_job = {
     "iter_time":34.89,
     "comp_time":34.89,
@@ -205,9 +208,10 @@ mobilenet_4_job = {
     "iters":1,
     "startup":9.4, #s
 }
+
 debug1_2_job = {
-    "iter_time":79.58,
-    "comp_time":20,
+    "iter_time":20,
+    "comp_time":0.01,
     "param_mat":np.array([
         [0.0, 500],
         [500, 0.0]
@@ -216,6 +220,7 @@ debug1_2_job = {
     "model_name":"debug1",
     "worker_num":2,
     "iters":1,
+    "startup":1
 }
 debug2_2_job = {
     "iter_time":79.58,
@@ -277,79 +282,51 @@ parse_job_dict = {
     "pp4tp1":pp4tp1_job,
     "pp1tp4":pp1tp4_job,
     #"pp2tp2":pp2tp2_job,
+    "test":debug1_2_job,
 }
-def make_job_from_template(config:dict, cluster, gv, scheduler):
-    new_job = job.job(
-        job_id=config["id"],
-        comp_time=config["comp_time"], # ms
-        param_mat=config["param_mat"],
-        param_size=config["param_size"],
-        arrive_ts=config["arrive_time"],
-        iter_num=config["iters"],
-        iter_time=config["iter_time"],
-        cluster=cluster,
-        gv=gv,
-        label=config["model_name"] + "-" + str(config["worker_num"]),
-        scheduler=scheduler,
-        startup_overhead=config["startup"],
-    )
-    return new_job
-
-def generate_jobs_list(job_name_list, cluster, gv, scheduler):
-    jobs_list = list()
-    iters_list = [40, 40, 4, 20]
-    arr_list = [0, 0, 400, 600]
-    for job_id, job in enumerate(job_name_list):
-        iters = iters_list[job_id]
-        arr = arr_list[job_id]
-        new_job = make_job_from_template(job, job_id, ee, cluster, gv, arr, iters, scheduler)
-        jobs_list.append(new_job)
-        gv.add_job(new_job)
-    return jobs_list
 
 def is_vision_job(job):
     return job["model_type"] == "vision"
 def is_nlp_job(job):
     return job["model_type"] == "transformer"
 
-def parse_job_trace(down_loc, cluster, scale_factor, gv, scheduler):
-    os.system("scp yangxiaomao@10.156.169.36:~/cmder/trace/job_trace.json %s" % down_loc)
+def parse_job_trace(gv, cluster, scheduler):
+    down_loc = gv.trace_file
     with open(down_loc, "r") as f:
         lines = f.readlines()
-    
+        
+    scale_factor = gv.scale_factor
+    print(f"Jobs      initializing...... [{BLUE}%d jobs total, scale_factor = %d{RESET}]" % (len(lines), scale_factor))
+
     jobs_list = list()
     for line in lines:
-        job = json.loads(line)
-        job_id     = job["id"]
-        if is_vision_job(job):
-            model_name = job["model_spec"]["model_name"]
-            iter_num   = job["model_spec"]["epochs"] * 79
-            worker_num = job["worker_num"]
-            arrive_time= job["arrive_time"]
+        new_job = json.loads(line)
+        worker_num = new_job["worker_num"]
+        
+        if is_vision_job(new_job):
+            model_name = new_job["model_spec"]["model_name"]
+            iter_num   = new_job["model_spec"]["epochs"] * 79
+
             job_to_add = copy.deepcopy(parse_job_dict[model_name][worker_num])
-        elif is_nlp_job(job):
-            model_name = "pp%dtp%d" % (job["parallel_spec"]["pp"],job["parallel_spec"]["tp"])
-            iter_num   = job["model_spec"]["iter_num"]
-            arrive_time= job["arrive_time"]
+        elif is_nlp_job(new_job):
+            model_name = "pp%dtp%d" % (new_job["parallel_spec"]["pp"],new_job["parallel_spec"]["tp"])
+            iter_num   = new_job["model_spec"]["iter_num"]
         
             job_to_add = copy.deepcopy(parse_job_dict[model_name])
-        # if job_id == 0:
-        #     iter_num = 20
-        #     arrive_time = 0
-        # else:
-        #     iter_num = 300
-        #     arrive_time = 400
-        job_to_add["iters"] = iter_num
-        job_to_add["arrive_time"] = arrive_time * 1000 # ms
-        job_to_add["id"] = job_id
+        else:
+            model_name = new_job["model_spec"]["model_name"]
+            iter_num   = new_job["model_spec"]["epochs"] * 79
+            
+            job_to_add = copy.deepcopy(parse_job_dict[model_name])
+            
+        job_to_add["iter_num"] = int(iter_num / scale_factor)
+        job_to_add["arrive_time"] = new_job["arrive_time"] * 1000 / scale_factor # ms
+        job_to_add["id"] = new_job["id"]
 
-        #job_to_add["comp_time"] /= scale_factor
-        job_to_add["arrive_time"] /= scale_factor
-        job_to_add["iters"] = int(job_to_add["iters"] / scale_factor)
 
-        new_job = make_job_from_template(job_to_add, cluster, gv, scheduler)
-        jobs_list.append(new_job)
-        gv.add_job(new_job)
-    # print(len(jobs_list))
-    # sys.exit(0)
+        job_class = job.Job(job_to_add,cluster,gv,scheduler)
+        jobs_list.append(job_class)
+        
+        gv.add_job(job_class)
+  
     return jobs_list
