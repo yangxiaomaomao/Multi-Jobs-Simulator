@@ -1,0 +1,2 @@
+DEBUG:root:Time[0.00000 ms]: Job[ 0], ARRIVE, gpt-4
+DEBUG:root:Time[0.00000 ms]: Job[ 0], START, G0-G1-G2-G3

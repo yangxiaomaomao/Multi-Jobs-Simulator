@@ -7,6 +7,7 @@ import copy
 import math
 import statistics
 from color import RED, GREEN, RESET, BLUE
+from job import Job
 
 class Cluster():
     def __init__(self, gv):
@@ -41,6 +42,23 @@ class Cluster():
         return "G" in node_name and self.graph.nodes[node_name]["job_id"] != -1
     def is_gpu(self, node_name):
         return "G" in node_name
+    def find_path(self, g1, g2):
+        assert self.is_gpu(g1) and self.is_gpu(g2)
+        m1 = int(g1[1:]) // self.gpus_per_machine
+        m2 = int(g2[1:]) // self.gpus_per_machine
+        #path_list = list()
+        if g1 == g2:
+            return [g1]
+        elif m1 == m2:
+            return [g1, 
+                    "P%d" % m1, 
+                    g2]
+        else:
+            return [g1,
+                    "P%d" % m1, "N%d" % m1,
+                    "TOR", 
+                    "N%d" % m2, "P%d" % m2,
+                    g2]
     
     def init_machine_graph(self):
         machine_graph = nx.Graph()
@@ -91,11 +109,18 @@ class Cluster():
         nic_util  = nic_node.get_load(curr_ts)
         gpu_free_list = self.free_gpu_in_machine(machine_name)
         
-        print("machine_id:%s: pcie_load:%f, nic_load:%f" % (
-            machine_name[1:],pcie_util, nic_util), gpu_free_list
-            )
+        # print("machine_id:%s: pcie_load:%f, nic_load:%f" % (
+        #     machine_name[1:],pcie_util, nic_util), gpu_free_list
+        #     )
             
         return {"pcie_util":pcie_util, "nic_util":nic_util, "gpu_free_list":gpu_free_list}
+    def get_cluster_node(self, curr_ts):
+        machine_load_dict = dict()
+        for mid in self.machine_ids:
+            # get pcie_load, nic_load and gpu_used_num
+            machine_load_dict[mid] = self.get_machine_load("P%d" % mid, curr_ts)
+        return machine_load_dict
+    
     # used by load balance
     def get_min_load_machine(self, machine_load_dict:dict):
         min_load = float("inf")
@@ -124,7 +149,8 @@ class Cluster():
     def set_gpu_free(self, gpu_list):
         for gpu_name in gpu_list:
             self.graph.nodes[gpu_name]["job_id"] = -1
-        
+    
+   
     def get_nodeload_from_id(self, param_mat:np.array, l:list)->dict:
         worker_num = len(l)
         if worker_num == 1:
@@ -205,7 +231,25 @@ class Cluster():
             selected_gpus.sort(key=lambda x:int(x[1:]))
         
         return selected_gpus
-          
+    
+    def add_load_2_cluster(self, curr_cluster_load:dict, node_name:str, demand:float):
+        
+        if self.is_pcie_switch(node_name):
+            key = "pcie_util"
+        elif self.is_nic(node_name):
+            key = "nic_util"
+        elif self.is_tor(node_name):
+            return 
+        else:
+            print("Can not add load to the gpu:%s" % node_name)
+            sys.exit(0)
+
+        machine_id = int(node_name[1:])
+        node_class = self.graph.nodes[node_name]["node"]
+        #print(node_name,demand,node_class.cap,demand / node_class.cap)
+        curr_cluster_load[machine_id][key] += demand / node_class.cap           
+        
+        
     def dump_cluster(self):
         free_gpu_num = 0
         for node_name in self.graph.neighbors("P0"):

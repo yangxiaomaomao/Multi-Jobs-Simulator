@@ -28,6 +28,8 @@ parser.add_argument('-tr', '--trace-file', default="trace/job_trace.json", type=
 parser.add_argument('-simin', '--sleep-interval-min', default=0, type=float, help='thread sleep interval min to avoid overload')
 parser.add_argument('-simax', '--sleep-interval-max', default=0.05, type=float, help='thread sleep interval max to avoid overload')
 parser.add_argument('-lsi', '--load-sample-interval', default=2, type=float, help="node load sample interval")
+
+parser.add_argument('-jt', '--jaca-thresh', default=1.2, type=float, help="the jaca threshold")
 args = parser.parse_args()
 
 
@@ -36,6 +38,7 @@ gv = global_var(args.scale_factor, args.division, args.machine_num, args.gpus_pe
                 args.pcie_capacity, args.nic_capacity,
                 args.scheduler, args.placement, 
                 args.sleep_interval_min, args.sleep_interval_max, args.load_sample_interval,
+                args.jaca_thresh,
                 args.trace_file)
 
 ## cluster + job + scheduler

@@ -41,7 +41,12 @@ class Job():
         
         self.recorder = dict()
         
+        # to coontrol the scheduler time
         self.sig = True
+        
+        # jaca related params
+        self.jaca_score = float("inf") # we choose the smallest jaca score job
+        self.jaca_placement = list() # the placement computed by jacar
 
         self.status = "PENDING" # PENDING RUNNING OVER
         
@@ -146,6 +151,12 @@ class Job():
         while 1:
             #print(self.job_id)
             #time.sleep(random.uniform(0, 0.5))
+            
+            # avoid the job is waiting too long or job is pending forever
+            # for if jaca_score is too large, we postpone the execution of the job
+            # there may be some jobs that are pending forever
+            
+            # if self.scheduler.sched_name == "jaca" and 
             if self.sig == False:
                 time.sleep(random.uniform(self.sleep_interval_min,self.sleep_interval_max))
                 continue

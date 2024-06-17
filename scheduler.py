@@ -3,6 +3,8 @@ import os
 from color import RED, GREEN, RESET, BLUE
 from global_var import global_var
 from cluster import Cluster
+import copy
+from jaca import Jaca
 
 class Scheduler():
     def __init__(self, gv:global_var, cluster:Cluster):
@@ -14,9 +16,11 @@ class Scheduler():
         
         self.comb_name = "%s-%s" % (self.sched_name, self.placer_name)
         
-        print(f"Scheduler initializing...... [{BLUE}%s * %s{RESET}]" % (self.sched_name, self.placer_name))
-    
-    
+        if self.sched_name == "jaca":
+            print(f"Scheduler initializing...... [{BLUE}%s * %s, thresh = %.2f{RESET}]" % (self.sched_name, self.placer_name, self.gv.jaca_thresh))
+        else:
+            print(f"Scheduler initializing...... [{BLUE}%s * %s{RESET}]" % (self.sched_name, self.placer_name))
+                    
     # option represent the sched time
     # "ARRIVE": job arrives, decide whether to place it
     # "END": job ends, decide whether to place the pending jobs
@@ -47,12 +51,16 @@ class Scheduler():
                 ret_jobs_list.sort(key=lambda job: job.iter_time * job.iter_num)
             elif self.sched_name == "gputime-shortest":
                 ret_jobs_list.sort(key=lambda job: job.iter_time * job.iter_num * job.worker_num)
+            elif self.sched_name == "jaca":
+                jacar = Jaca(self.gv, self.cluster, ret_jobs_list)
+                jacar.compute_all_jobs_score()
+                ret_jobs_list.sort(key=lambda job: job.jaca_score)
             else:
                 print("Don't support the scheduler")
                 sys.exit(0)
                 
             selected_job = ret_jobs_list[0]
-            worker_num = selected_job.worker_num
+            
             if self.placer_name == "consolidate":
                 placement = self.cluster.consolidate_placement(selected_job)
                 # print(job.label,"ooooooooo")
@@ -73,6 +81,9 @@ class Scheduler():
                 #placement = ["G0","G1"]
             elif self.placer_name == "load_balance":
                 placement = self.cluster.load_balance_placement(selected_job)
+            elif self.placer_name == "jaca":
+                placement = job.jaca_placement
+            #placement = ["G5","G4","G1","G0"]    
             if placement:
                 print("Job[%d] is placed on %s" % (selected_job.job_id, placement))
             

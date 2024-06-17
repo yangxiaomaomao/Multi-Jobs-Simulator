@@ -24,10 +24,10 @@ pp4tp1_job = {
     "startup":11.8, #s
 }
 
-# dont use 2024/6/10, dev is large
+# dont use 2024/6/17, dev is large
 pp2tp2_job = {
     "iter_time":420.27,
-    "comp_time":306.83,# comm_time = 263.167
+    "comp_time":157.1,# comm_time = 263.167
     "param_mat":np.array([ # 59.2 = 51.2 + 8 = em + pp
         [0.0, 503.32, 59.2, 0.0], 
         [503.32, 0.0, 0.0, 59.2], 
@@ -281,7 +281,7 @@ parse_job_dict = {
     "pp1tp2":pp1tp2_job,
     "pp4tp1":pp4tp1_job,
     "pp1tp4":pp1tp4_job,
-    #"pp2tp2":pp2tp2_job,
+    "pp2tp2":pp2tp2_job,
     "test":debug1_2_job,
 }
 
