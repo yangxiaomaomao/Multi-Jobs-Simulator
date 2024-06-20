@@ -8,6 +8,10 @@ import math
 import statistics
 from color import RED, GREEN, RESET, BLUE
 from job import Job
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+import utils
+from itertools import product, chain
 
 class Cluster():
     def __init__(self, gv):
@@ -232,6 +236,7 @@ class Cluster():
         
         return selected_gpus
     
+    # jaca use
     def add_load_2_cluster(self, curr_cluster_load:dict, node_name:str, demand:float):
         
         if self.is_pcie_switch(node_name):
@@ -249,7 +254,144 @@ class Cluster():
         #print(node_name,demand,node_class.cap,demand / node_class.cap)
         curr_cluster_load[machine_id][key] += demand / node_class.cap           
         
+    # jaca use
+    def classfying_workers(self, group_thresh:int):
+        machine_load_dict = self.get_cluster_node(self.gv.get_global_time())
+        # {
+        #  0: {"feature":[free_gpu_num, pcie_util, nic_util], "label":0]},
+        #  1: {...}
+        # }
         
+        # to classify
+        node_feature_dict = dict()
+        # to count how many gpus in each group
+        label_counter     = dict()
+        
+        for mid, machine_load_info in machine_load_dict.items():
+            # if there is no free gpu in the machine,
+            # then it will not participate in the grouping phase
+            if machine_load_info["gpu_free_list"]:
+                node_feature_dict[mid] = {
+                    "feature":[
+                            len(machine_load_info["gpu_free_list"]), 
+                            machine_load_info["pcie_util"], 
+                            machine_load_info["nic_util"]
+                        ],
+                }
+        samples = [v["feature"] for v in node_feature_dict.values()]
+        samples[0][1] = 3
+        samples[1][1] = 5
+        samples[2][1] = 5
+        samples[3][1] = 20
+        samples[4][1] = 7
+        samples[5][1] = 7
+        samples[6][1] = 15
+        samples[7][1] = 9
+        samples[11][1] = 5
+        samples[12][2] = 5
+        samples[13][1] = 10
+        samples[14][1] = 7
+        samples[20][2] = 3
+        samples[21][1] = 5
+        samples[22][0] = 5
+        samples[23][2] = 0
+        samples[24][1] = 7
+        samples[25][1] = 7
+        samples[26][0] = 15
+        samples[27][1] = 9
+        samples[30][2] = 14
+        samples[31][1] = 14
+        
+        labels = self.get_best_cluster(samples, group_thresh)
+        for label,(mid, load_info) in zip(labels,node_feature_dict.items()):
+            machine_load_dict[mid]["label"] = label
+            if label not in label_counter.keys():
+                label_counter[label] = 0
+            label_counter[label] += load_info["feature"][0]
+        
+        label_counter = {k: v for k, v in sorted(label_counter.items())}
+
+        return machine_load_dict, label_counter
+    
+    def get_best_cluster(self, samples, group_thresh):
+        # all the sample is the same, so all belongs the same group
+        if all(elem == samples[0] for elem in samples):
+            return [0] * len(samples)           
+        if len(samples) == 2:
+            return [0, 1]
+
+        cluster_range = list(range(2,min(len(samples) - 1, group_thresh) + 1))
+
+        max_score = float("-inf")
+        ret_labels = list()
+        # get the best clusters
+        # attention, if cluster = 3, the label may only contain 2 kinds, e.g. [0,0,1]
+        #print("range",cluster_range,min(len(samples) - 1, group_thresh) + 1)
+        for cluster in cluster_range:
+            kmeans = KMeans(n_clusters=cluster, n_init=10)
+            kmeans.fit(samples)
+            labels = kmeans.labels_
+            silhouette_avg = silhouette_score(samples, labels)
+            if silhouette_avg > max_score:
+                max_score = silhouette_avg
+                ret_labels = labels
+
+        return ret_labels
+    
+    
+    def get_subgroup_id(self, node_info:dict,group_id:int, gpu_num:int)->list:
+        subgroup_free_num = {machine_name:len(info["gpu_free_list"]) for machine_name, info in node_info.items() if info["label"] == group_id}
+        # 获取属于本group的machine的空闲gpu数量,key是machine编号
+        # 获取组内分配方式的种类
+        gpu_in_subgroups = utils.put_balls_in_boxes(list(subgroup_free_num.values()), gpu_num)
+        # 忽略顺序的去重去0
+        gpu_in_subgroups = utils.remove_dup(gpu_in_subgroups)
+
+        machine_name_list = list(subgroup_free_num.keys())
+        #sys.exit(0)
+        group_id_list = list()
+        for gpus in gpu_in_subgroups:
+            tmp = list()
+            for mid, gpu_cnt in enumerate(gpus):
+                tmp += node_info[machine_name_list[mid]]["gpu_free_list"][0:gpu_cnt]
+            group_id_list.append(tmp)
+
+        return group_id_list
+    def get_candidate_place(self, node_info, label_counter, job:dict):
+        candidate_list = list()
+
+        job_worker_num = job.worker_num
+        
+        # ensure the num of free gpu is larger than the worker demand
+        # although the former has ensure it, but we are careful
+        assert sum(list(label_counter.values())) >= job_worker_num
+        
+        # each list in the list represents the number of gpus in this group(len(ballboxs[0] is at most group_thresh))
+        # e.g., for group_thresh = 4, label_counter.values = [4,4,4,4], len(ballboxs) = 35
+        ballboxs = utils.put_balls_in_boxes(list(label_counter.values()), job_worker_num)
+        #sys.exit(0)
+        for bb in ballboxs:
+            candidate = list()
+            for group_id, gpu_num_in_group in enumerate(bb):
+                #continue
+                if gpu_num_in_group == 0:
+                    continue
+
+                subgroup_id = self.get_subgroup_id(node_info, group_id, gpu_num_in_group)
+
+                candidate.append(subgroup_id)
+
+            candidate_uniform = [list(chain.from_iterable(list(candi))) for candi in list(product(*candidate))]
+            #print(bb, candidate_uniform)
+            candidate_list += candidate_uniform
+            #print(bb,candidate_uniform)
+        #print("wwwwwwwwwwwwww",candidate_list,"wwwwwwwww")
+        #sys.exit(0)
+        return candidate_list
+    
+    
+    
+    # log function
     def dump_cluster(self):
         free_gpu_num = 0
         for node_name in self.graph.neighbors("P0"):

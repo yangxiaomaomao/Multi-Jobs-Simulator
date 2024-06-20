@@ -29,30 +29,36 @@ placer_list = ["jaca"]
 timer_dict = dict()
 
 gem = 4 # gpus num per machine
-mn = 4 # machines num
-division = 15
-sf = 30
+mn = 64 # machines num
+division = 15 # Big enough is enough, too long is non-sense
+sf = 30 # only work for arrive time and iter nums(used in plot.ipynb and model_config.py)
 
 pcie_cap = 8.55 * 1000 # MBps for 16 * pcie3.0
 nic_cap  = 8.98819 / 8 * 1000 # MBps, 8.98819 represent the 10Gbps ethlink, /8 is to tranfer Gbps to GBps
 
-sleep_interval_min = 0.01
-sleep_interval_max = 0.05
-load_sample_interval = 1 # 2s, to get the node load
+sleep_interval_min = 0.01 # sleep too short will burden the thread
+sleep_interval_max = 0.05 # sleep too long will delay the job
+load_sample_interval = 1 # 2s, to get the node load during the passed 2s
 
 # jaca param
-jaca_thresh = 10000
+jaca_thresh = 10000 # if jaca_score is larger than jaca_thresh, we will postpone the exec of the job, even if there is enough resources
+group_thresh = 4 # at least `param` group when classifying workers
 
-# when conduct different trace, change the parameter
+# when conduct different traces, change the parameter
 total_res_dir = "result"
 
+# the trace file containing the arrive time and the model spec(comm pattern, iter num and so on)
 trace_file = "trace/job_trace.json"
+
+# get trace from other machine
 #os.system("scp yangxiaomao@10.156.169.36:~/cmder/trace/job_trace.json %s" % trace_file)
 
 assert mn * gem > 0
 
 for sched in sched_list:
     for placer in placer_list:
+        if sched == "jaca" and sched != placer:# when sched is jaca, placer must be jaca, otherwise, we jump to next loop
+            continue
         result_dir = "%s/%s-%s" % (total_res_dir, sched, placer)
         os.makedirs(result_dir, exist_ok=True)
         os.system("rm -f %s/*.txt" % result_dir)
@@ -70,7 +76,7 @@ for sched in sched_list:
                     "-d %d -sf %d " % (division, sf) + \
                     "-tr %s " % trace_file + \
                     "-simin %f -simax %f -lsi %f " % (sleep_interval_min, sleep_interval_max, load_sample_interval) + \
-                    "-jt %f " % jaca_thresh
+                    "-jt %f -gt %d " % (jaca_thresh, group_thresh)
                 )
         end_time = time.time()
         

@@ -30,6 +30,8 @@ parser.add_argument('-simax', '--sleep-interval-max', default=0.05, type=float, 
 parser.add_argument('-lsi', '--load-sample-interval', default=2, type=float, help="node load sample interval")
 
 parser.add_argument('-jt', '--jaca-thresh', default=1.2, type=float, help="the jaca threshold")
+parser.add_argument('-gt', '--group-thresh', default=2, type=int, help="the group threshold in jaca")
+
 args = parser.parse_args()
 
 
@@ -38,7 +40,7 @@ gv = global_var(args.scale_factor, args.division, args.machine_num, args.gpus_pe
                 args.pcie_capacity, args.nic_capacity,
                 args.scheduler, args.placement, 
                 args.sleep_interval_min, args.sleep_interval_max, args.load_sample_interval,
-                args.jaca_thresh,
+                args.jaca_thresh, args.group_thresh,
                 args.trace_file)
 
 ## cluster + job + scheduler

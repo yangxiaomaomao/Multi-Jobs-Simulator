@@ -6,7 +6,7 @@ class global_var():
                  machine_num, gpus_per_machine, 
                  pcie_cap, nic_cap,
                  scheduler, placer, sleep_interval_min, sleep_interval_max, load_sample_interval,
-                 jaca_thresh,
+                 jaca_thresh, group_thresh,
                  trace_file):
         # some global varibles to be used by other modules like job and cluster and scheduler 
         self.jobs_trace = dict()
@@ -31,6 +31,7 @@ class global_var():
         
         # jaca param
         self.jaca_thresh = jaca_thresh
+        self.group_thresh = group_thresh
         
         # job trace(input)
         self.trace_file = trace_file

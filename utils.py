@@ -129,4 +129,26 @@ def get_comm_time(job):
         return 0.595 * all_reduce_size + 0.017
     
 
+def put_balls_in_boxes(l, n):
+    def helper(n, l, path, result):
+        if n == 0:
+            result.append(path)
+            return
+        if not l:
+            return
+        for i in range(min(n, l[0]) + 1):
+            helper(n - i, l[1:], path + [i], result)
+
+    result = []
+    helper(n, l, [], result)
+    return result
+
+def remove_dup(l:list):
+    # remove 0
+    modified_list = [[elem for elem in sub_list if elem != 0] for sub_list in l]
+
+    # the different order is considered as the same place, for it is in the same group
+    unique_list = [list(t) for t in {tuple(sorted(sublist)) for sublist in modified_list}]
+
+    return unique_list
     

@@ -3,7 +3,6 @@ from job import Job
 from cluster import Cluster
 from global_var import global_var
 import sys
-import networkx as nx
 from itertools import permutations, combinations
 import statistics as statis
 import time
@@ -12,7 +11,9 @@ class Jaca():
     def __init__(self, gv:global_var, cluster:Cluster, pending_jobs:list):
         self.gv = gv
         self.cluster = cluster
+        
         self.jaca_thresh = self.gv.jaca_thresh
+        self.group_thresh = self.gv.group_thresh
         
         self.pending_jobs = pending_jobs
 
@@ -56,44 +57,56 @@ class Jaca():
         # minmax, 在所有摆放中，我们只关注最大负载的节点
         return max(load_factor)
     
-    def compute_single_job_score(self, job:Job):
-        
+    def compute_single_job_score(self, job:Job, node_info:dict, label_counter:dict):
         print("*" * 20 +"Computing Job[%d] jaca score" % (job.job_id) + "*" * 20)
         jaca_start_time = time.time()
+        
         worker_num = job.worker_num
-        
         free_gpu = self.cluster.free_gpu_in_cluster()
-        best_placement = list()# ["G0", "G1"] like this
         
+        candidate_list = self.cluster.get_candidate_place(node_info, label_counter, job)
+        print(len(candidate_list))
+        sys.exit(0)
+        best_placement = list()# ["G0", "G1"] like this
         jaca_min_score = float("inf")
         
+        candi_counter = 0
+        
         for candi in permutations(free_gpu, worker_num):#[["G0","G1","G5","G4"]]:#
+            candi_counter += 1
             candi = list(candi)
             jaca_score = self.compute_compatibility(job, candi)
             if jaca_score < jaca_min_score:
                 jaca_min_score = jaca_score
                 best_placement = candi
+            
             #print("Candidate:",candi,"Jaca_score:%f" % jaca_score)
+        #print("Candi Counter:",candi_counter)
+        #sys.exit(0)
         job.jaca_score = jaca_min_score
         job.jaca_placement = best_placement
-        if job.jaca_score > 1.2:
+        if job.jaca_score > self.jaca_thresh:
             # to large, is not compatible to the current cluster
             job.jaca_placement = list()
         
         jaca_end_time = time.time()
-        print("jaca cost:%.2fms" % ((jaca_end_time - jaca_start_time) * 1000))
+        jaca_cost_time = (jaca_end_time - jaca_start_time) * 1000
+        print("jaca cost:%.2fms, total:%.2fms, candi num = %d" % (jaca_cost_time / candi_counter, jaca_cost_time, candi_counter))
         
         print("*" * 20 + "Job[%d] res:" % (job.job_id) + "*" * 20)
         print(job.jaca_score, job.jaca_placement)
 
-        
-
     def compute_all_jobs_score(self):
         free_gpu = self.cluster.free_gpu_in_cluster()
-        
+        node_info, label_counter = self.cluster.classfying_workers(self.group_thresh)
+        print(label_counter)
+        # print(node_info, label_counter)
+        #sys.exit(0)
+        # TODO: get each job's(running) dependence on each node,
+        # the dependence can be used for all jobs' computing jaca_score phase
         for job in self.pending_jobs:
             if job.worker_num <= len(free_gpu):
-                self.compute_single_job_score(job)
+                self.compute_single_job_score(job, node_info, label_counter)
             else:
                 pass
             
