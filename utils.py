@@ -151,4 +151,28 @@ def remove_dup(l:list):
     unique_list = [list(t) for t in {tuple(sorted(sublist)) for sublist in modified_list}]
 
     return unique_list
-    
+def remove_duplicates(res):
+    dict_list = list()
+    # add machine_id
+    for place in res:
+        dict_list.append(
+            {k:v for k,v in enumerate(place) if v != 0}
+        )    
+    seen_values = set()
+    unique_dicts = []
+
+    # remove dup according to each dict's values_list
+    # {1: 2, 2: 2} and {0: 2, 2: 2} is the same
+    for d in dict_list:
+        values_tuple = tuple(sorted(d.values()))
+        if values_tuple not in seen_values:
+            seen_values.add(values_tuple)
+            unique_dicts.append(d)
+
+    return unique_dicts
+# l = [1,2,3,4]
+# balls = 4
+# res = put_balls_in_boxes(l,balls)
+
+# print(res)
+# print(remove_duplicates(res))

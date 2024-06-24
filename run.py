@@ -23,64 +23,71 @@ def sort_file_by_time(result_dir):
 
 
 # ["fifo","smallest", "time-shortest", "gputime-shortest", "jaca"]
-sched_list = ["jaca"]
+sched_list = ["fifo","smallest", "time-shortest", "gputime-shortest", "jaca"]
 # ["consolidate", "load_balance","jaca"]
-placer_list = ["jaca"]
+placer_list = ["consolidate", "jaca"]
 timer_dict = dict()
 
 gem = 4 # gpus num per machine
-mn = 64 # machines num
-division = 15 # Big enough is enough, too long is non-sense
-sf = 30 # only work for arrive time and iter nums(used in plot.ipynb and model_config.py)
+mn = 4 # machines num
+division = 15 # Big enough is enough, too big is non-sense
+
+# only work for arrive time and iter nums(used in plot.ipynb and model_config.py)
+sf = 60 
 
 pcie_cap = 8.55 * 1000 # MBps for 16 * pcie3.0
 nic_cap  = 8.98819 / 8 * 1000 # MBps, 8.98819 represent the 10Gbps ethlink, /8 is to tranfer Gbps to GBps
 
 sleep_interval_min = 0.01 # sleep too short will burden the thread
 sleep_interval_max = 0.05 # sleep too long will delay the job
-load_sample_interval = 1 # 2s, to get the node load during the passed 2s
+load_sample_interval = 0.3 # 2s, to get the node load during the passed 0.5s
 
+all_trace_result_dir = "result"
 # jaca param
-jaca_thresh = 10000 # if jaca_score is larger than jaca_thresh, we will postpone the exec of the job, even if there is enough resources
+jaca_thresh = 1.2 # if jaca_score is larger than jaca_thresh, we will postpone the exec of the job, even if there is enough resources
 group_thresh = 4 # at least `param` group when classifying workers
 
-# when conduct different traces, change the parameter
-total_res_dir = "result"
+job_tput_sample_len = 3 # the throughput sample length of the job
 
-# the trace file containing the arrive time and the model spec(comm pattern, iter num and so on)
-trace_file = "trace/job_trace.json"
+possion_interval = [40,45,50,55,60,65]
 
 # get trace from other machine
 #os.system("scp yangxiaomao@10.156.169.36:~/cmder/trace/job_trace.json %s" % trace_file)
 
 assert mn * gem > 0
 
-for sched in sched_list:
-    for placer in placer_list:
-        if sched == "jaca" and sched != placer:# when sched is jaca, placer must be jaca, otherwise, we jump to next loop
-            continue
-        result_dir = "%s/%s-%s" % (total_res_dir, sched, placer)
-        os.makedirs(result_dir, exist_ok=True)
-        os.system("rm -f %s/*.txt" % result_dir)
-        os.system("cp %s %s" % (trace_file, result_dir))
-        os.system("cp plot.ipynb %s" % total_res_dir)
-        
-        print("*"*20 + "Running %s-%s" % (sched, placer) + "*" * 20)
-        
-        
-        start_time = time.time()
-        os.system("python main.py " + \
-                    "-s %s -p %s " % (sched, placer) + \
-                    "-gem %d -mn %d " % (gem, mn) + \
-                    "-pc %f -nc %f " % (pcie_cap, nic_cap) + \
-                    "-d %d -sf %d " % (division, sf) + \
-                    "-tr %s " % trace_file + \
-                    "-simin %f -simax %f -lsi %f " % (sleep_interval_min, sleep_interval_max, load_sample_interval) + \
-                    "-jt %f -gt %d " % (jaca_thresh, group_thresh)
-                )
-        end_time = time.time()
-        
-        sort_file_by_time(result_dir) 
-        print("*"*20 + "%s-%s cost %.2fs" % (sched, placer, end_time - start_time) + "*" * 20)
-        timer_dict["%s-%s" % (sched, placer)] = end_time - start_time
-        print(timer_dict)
+for interval in possion_interval:
+    for sched in sched_list:
+        for placer in placer_list:
+            if (sched == "jaca" or placer == "jaca") and sched != placer:# when sched is jaca, placer must be jaca, otherwise, we jump to next loop
+                continue
+            all_scheme_res_dir = "%s/result-interval-%ds" % (all_trace_result_dir, interval)
+            result_dir = "%s/%s-%s" % (all_scheme_res_dir, sched, placer)
+            # the trace file containing the arrive time and the model spec(comm pattern, iter num and so on)
+            trace_file = "trace/job_trace_%ds.json" % interval
+            
+            os.makedirs(result_dir, exist_ok=True)
+            os.system("rm -f %s/*.txt" % result_dir)
+            os.system("cp %s %s" % (trace_file, result_dir))
+            os.system("cp plot.ipynb %s" % all_scheme_res_dir)
+            
+            print("*"*20 + "Running %s-%s" % (sched, placer) + "*" * 20)
+            
+            
+            start_time = time.time()
+            os.system("python main.py " + \
+                        "-s %s -p %s " % (sched, placer) + \
+                        "-gem %d -mn %d " % (gem, mn) + \
+                        "-pc %f -nc %f " % (pcie_cap, nic_cap) + \
+                        "-d %d -sf %d " % (division, sf) + \
+                        "-tr %s " % trace_file + \
+                        "-simin %f -simax %f -lsi %f " % (sleep_interval_min, sleep_interval_max, load_sample_interval) + \
+                        "-jt %f -gt %d " % (jaca_thresh, group_thresh) + \
+                        "-jsl %d -rd %s " % (job_tput_sample_len, result_dir)
+                    )
+            end_time = time.time()
+            
+            sort_file_by_time(result_dir) 
+            print("*"*20 + "%s-%s cost %.2fs" % (sched, placer, end_time - start_time) + "*" * 20)
+            timer_dict["%s-%s" % (sched, placer)] = end_time - start_time
+            print(timer_dict)

@@ -231,9 +231,6 @@ class Cluster():
 
         assert len(selected_gpus) == worker_num
         
-        if job.is_vision_job():
-            selected_gpus.sort(key=lambda x:int(x[1:]))
-        
         return selected_gpus
     
     # jaca use
@@ -279,30 +276,32 @@ class Cluster():
                         ],
                 }
         samples = [v["feature"] for v in node_feature_dict.values()]
-        samples[0][1] = 3
-        samples[1][1] = 5
-        samples[2][1] = 5
-        samples[3][1] = 20
-        samples[4][1] = 7
-        samples[5][1] = 7
-        samples[6][1] = 15
-        samples[7][1] = 9
-        samples[11][1] = 5
-        samples[12][2] = 5
-        samples[13][1] = 10
-        samples[14][1] = 7
-        samples[20][2] = 3
-        samples[21][1] = 5
-        samples[22][0] = 5
-        samples[23][2] = 0
-        samples[24][1] = 7
-        samples[25][1] = 7
-        samples[26][0] = 15
-        samples[27][1] = 9
-        samples[30][2] = 14
-        samples[31][1] = 14
+        
+        # samples[0][1] = 3
+        # samples[1][1] = 3
+        # samples[2][1] = 5
+        # samples[3][1] = 5
+        # samples[4][1] = 7
+        # samples[5][1] = 7
+        # samples[6][1] = 9
+        # samples[7][1] = 9
+        # samples[11][1] = 5
+        # samples[12][2] = 5
+        # samples[13][1] = 10
+        # samples[14][1] = 7
+        # samples[20][2] = 3
+        # samples[21][1] = 5
+        # samples[22][0] = 5
+        # samples[23][2] = 0
+        # samples[24][1] = 7
+        # samples[25][1] = 7
+        # samples[26][0] = 15
+        # samples[27][1] = 9
+        # samples[30][2] = 14
+        # samples[31][1] = 14
         
         labels = self.get_best_cluster(samples, group_thresh)
+        
         for label,(mid, load_info) in zip(labels,node_feature_dict.items()):
             machine_load_dict[mid]["label"] = label
             if label not in label_counter.keys():
@@ -310,7 +309,7 @@ class Cluster():
             label_counter[label] += load_info["feature"][0]
         
         label_counter = {k: v for k, v in sorted(label_counter.items())}
-
+        #print(machine_load_dict, label_counter)
         return machine_load_dict, label_counter
     
     def get_best_cluster(self, samples, group_thresh):
@@ -340,22 +339,35 @@ class Cluster():
     
     
     def get_subgroup_id(self, node_info:dict,group_id:int, gpu_num:int)->list:
-        subgroup_free_num = {machine_name:len(info["gpu_free_list"]) for machine_name, info in node_info.items() if info["label"] == group_id}
+        #print(node_info,group_id,gpu_num,"dfghjk")
+        # group_id = 0
+        # gpu_num = 4
+        # node_info = {0: {'pcie_util': 0, 'nic_util': 0, 'gpu_free_list': ['G2', 'G3'], 'label': 0}, 
+        #              1: {'pcie_util': 0, 'nic_util': 0, 'gpu_free_list': ['G4', 'G5', 'G6'], 'label': 0},
+        #              2: {'pcie_util': 0, 'nic_util': 0, 'gpu_free_list': ['G8', 'G9', 'G10'], 'label': 0}
+        #              }
+        subgroup_free_num = {machine_name:len(info["gpu_free_list"]) for machine_name, info in node_info.items() 
+                             if "label" in list(info.keys()) and info["label"] == group_id}
         # 获取属于本group的machine的空闲gpu数量,key是machine编号
         # 获取组内分配方式的种类
         gpu_in_subgroups = utils.put_balls_in_boxes(list(subgroup_free_num.values()), gpu_num)
+        #gpu_in_subgroups = utils.put_balls_in_boxes([2,3],3)
+        #print(gpu_in_subgroups)
         # 忽略顺序的去重去0
-        gpu_in_subgroups = utils.remove_dup(gpu_in_subgroups)
+        gpu_in_subgroups = utils.remove_duplicates(gpu_in_subgroups)
 
         machine_name_list = list(subgroup_free_num.keys())
+        #sys.exit(0)
+        #print(subgroup_free_num, gpu_in_subgroups)
         #sys.exit(0)
         group_id_list = list()
         for gpus in gpu_in_subgroups:
             tmp = list()
-            for mid, gpu_cnt in enumerate(gpus):
+            for mid, gpu_cnt in gpus.items():
                 tmp += node_info[machine_name_list[mid]]["gpu_free_list"][0:gpu_cnt]
             group_id_list.append(tmp)
-
+        # print(group_id_list)
+        # sys.exit(0)
         return group_id_list
     def get_candidate_place(self, node_info, label_counter, job:dict):
         candidate_list = list()
@@ -369,6 +381,7 @@ class Cluster():
         # each list in the list represents the number of gpus in this group(len(ballboxs[0] is at most group_thresh))
         # e.g., for group_thresh = 4, label_counter.values = [4,4,4,4], len(ballboxs) = 35
         ballboxs = utils.put_balls_in_boxes(list(label_counter.values()), job_worker_num)
+        #print(list(label_counter.values()), job_worker_num,"kkk")
         #sys.exit(0)
         for bb in ballboxs:
             candidate = list()
@@ -385,8 +398,8 @@ class Cluster():
             #print(bb, candidate_uniform)
             candidate_list += candidate_uniform
             #print(bb,candidate_uniform)
-        #print("wwwwwwwwwwwwww",candidate_list,"wwwwwwwww")
-        #sys.exit(0)
+        # print("wwwwwwwwwwwwww",candidate_list,"wwwwwwwww")
+        # sys.exit(0)
         return candidate_list
     
     

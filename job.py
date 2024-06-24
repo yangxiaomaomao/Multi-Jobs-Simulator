@@ -7,6 +7,7 @@ from safeDict import ThreadSafeDict
 import random
 import json
 import os
+import statistics as statis
 from color import RED, GREEN, RESET
 
 class Job():
@@ -40,25 +41,28 @@ class Job():
         self.iter_counter = 0
         
         self.recorder = dict()
+        self.tput_sample_len = self.gv.job_tput_sample_len # when sampling tput, we choose the recent tput_sample_len iter time
         
         # to coontrol the scheduler time
         self.sig = True
         
-        # jaca related params
-        self.jaca_score = float("inf") # we choose the smallest jaca score job
-        self.jaca_placement = list() # the placement computed by jacar
+        self.init_jaca()
 
         self.status = "PENDING" # PENDING RUNNING OVER
         
-        self.record_pth = "result/%s" % self.scheduler.comb_name
-        if not os.path.exists(self.record_pth):
-            os.makedirs(self.record_pth)
+        self.record_pth = self.gv.result_dir
+
         self.res_file   = os.path.join(self.record_pth, "res.csv")
+        print(self.res_file)
         self.tput_file  = os.path.join(self.record_pth, "job-%d-tput.txt" % self.job_id)
 
         log_job_info(self.local_ts, self.job_id, "ARRIVE", self.label, self.res_file)
         print(f"{GREEN}Time[%5.2fms]: Job[%d] arrives %s{RESET}" % (self.local_ts, self.job_id, self.label))
-
+    def init_jaca(self):
+        # jaca related params
+        self.jaca_score = float("inf") # we choose the smallest jaca score job
+        self.jaca_placement = list() # the placement computed by jacar
+        
     def is_vision_job(self):
         return "gpt" not in self.label
     def is_nlp_job(self):
@@ -105,14 +109,38 @@ class Job():
         return lst[0] + [lst[i+1] - lst[i] for i in range(len(lst) - 1)]
     
     def write_iter_time(self, d:dict):
+        tput_dict = self.get_tput_dict()
         with open(self.tput_file, "w") as f:
-            for i,t in d.items():
-                if i == 0:
-                    f.write("%d,%.2f" % (i, d[i] - self.start_ts))
-                else:
-                    f.write("%d,%.2f" % (i, d[i] - d[i-1]))
+            for i,tput in tput_dict.items():
+                f.write("%d,%.2f,%.2f,%.2f" % (i, tput, self.jaca_score, (self.get_local_ts() - self.start_ts) / self.iter_num / self.iter_time))
                 f.write("\n")
                 
+    def get_tput_dict(self):
+        tput_dict = dict()
+        for k,ts in enumerate(self.recorder):
+            if k == 0:
+                tput_dict[k] = self.recorder[k] - self.start_ts
+            else:
+                tput_dict[k] = self.recorder[k] - self.recorder[k-1]
+        return tput_dict
+    
+    def get_node_dependence(self):
+        tput_dict = self.get_tput_dict()
+        load_dict = dict()
+        if not tput_dict or self.status != "RUNNING":
+            return {}
+        
+        start_iter = max(0, len(tput_dict) - self.tput_sample_len)
+        ave_tput = statis.mean(list(tput_dict.values())[start_iter:])
+        
+        for node, load in self.node_load.items():
+            # compute the percent of job's time-consuming in this node
+            # assuming ththe job is exclusively own the node 
+            # later we can add the remaining iter num percent, 
+            # for if a job is to be finished, then affecting it is not that important.
+            load_dict[node] = load / node.cap * 1000 / ave_tput# * (self.iter_num - self.iter_counter) / (self.iter_num)
+            
+        return load_dict
     def init_node_runtime(self, node_list, ts, using):
         self.node_runtime_dict.init_node(node_list, ts, using)
 
@@ -161,9 +189,10 @@ class Job():
                 time.sleep(random.uniform(self.sleep_interval_min,self.sleep_interval_max))
                 continue
             global_time = self.gv.get_global_time()
-            # if self.worker_num == 2:
+            # if self.job_id == 4:
             #     print(global_time, self.get_local_ts(), self.job_id)
             if global_time >= self.get_local_ts():
+                #print("fghjkl")
                 if not self.gpus_use:
                     self.scheduler.sched_and_place(self)
                     
@@ -223,7 +252,8 @@ class Job():
             self.local_ts = self.get_local_ts()
             #print(self.local_ts,"kkkk")
             global_time = self.gv.get_global_time()
-            
+            #print(self.get_tput_dict())
+            #print(self.get_node_dependence())
             if self.local_ts <= global_time:
                 self.make_trace("run%d" % self.iter_counter, "B")
                 

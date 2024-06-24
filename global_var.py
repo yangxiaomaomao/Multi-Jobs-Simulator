@@ -1,12 +1,14 @@
 import sys
 import os
 import json
+import statistics as statis
 class global_var():
     def __init__(self, scale_factor, division, 
                  machine_num, gpus_per_machine, 
                  pcie_cap, nic_cap,
                  scheduler, placer, sleep_interval_min, sleep_interval_max, load_sample_interval,
                  jaca_thresh, group_thresh,
+                 job_tput_sample_len, result_dir,
                  trace_file):
         # some global varibles to be used by other modules like job and cluster and scheduler 
         self.jobs_trace = dict()
@@ -32,6 +34,10 @@ class global_var():
         # jaca param
         self.jaca_thresh = jaca_thresh
         self.group_thresh = group_thresh
+        
+        # job param
+        self.job_tput_sample_len = job_tput_sample_len
+        self.result_dir = result_dir
         
         # job trace(input)
         self.trace_file = trace_file
@@ -61,7 +67,27 @@ class global_var():
 
         return ret_time
 
-    
+    def get_job_dependence(self):
+        job_dep_node = dict()
+        for job_id, job in self.jobs_trace.items():
+            job_dep = job.get_node_dependence()
+            if not job_dep:
+                continue
+            for node, dep in job_dep.items():
+                node_id = node.node_id
+                if node_id not in job_dep_node.keys():
+                    job_dep_node[node_id] = list()
+                job_dep_node[node_id].append({job_id:dep})
+        '''{node_id: [{job_id: dep}, {job_id: dep}]}
+        {
+            0: [{0: 0.09552588807870618}, {1: 0.08354191915154809}], 
+            1: [{0: 0.7269506702220918}],
+            3: [{0: 0.7269506702220918}], 
+            2: [{0: 0.09552588807870618}]
+        }
+        '''
+        job_dep_node = {k:statis.mean([list(d.values())[0] for d in v]) for k,v in job_dep_node.items()}
+        return job_dep_node
     
     def add_job(self, job):
         job_id = job.job_id

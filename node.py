@@ -59,9 +59,7 @@ class Node():
         sample_start = max(0, curr_ts - self.load_sample_interval * 1000)
         ts_list_sample = [ts for ts in ts_list 
                           if ts >= sample_start and ts <= curr_ts]
-        
-        #print(ts_list_sample,traffic_sum / (curr_ts - sample_start),self.cap)
-        
+
         if not ts_list_sample:
             return 0
         
@@ -71,8 +69,8 @@ class Node():
             
         #print(traffic_sum / (ts_list[-1] - ts_list[former_ts]))
         traffic_load = traffic_sum / (curr_ts - min(ts_list_sample))
-        print(self.node_type, traffic_sum, (curr_ts - min(ts_list_sample)), 
-              traffic_load, self.cap, traffic_load / self.cap * 1000)
+        # print(self.node_type, traffic_sum, (curr_ts - min(ts_list_sample)), 
+        #       traffic_load, self.cap, traffic_load / self.cap * 1000)
         return traffic_load / (self.cap / 1000)
      
     # estimate the load of the node using time window
@@ -148,9 +146,9 @@ class Node():
             if self.sched_barrier == 1 or not list(self.job_dict.keys()):
                 #time.sleep(2)
                 #print("ghj")
+                
                 time.sleep(random.uniform(self.sleep_interval_min,self.sleep_interval_max))
                 continue
-
             #time.sleep(random.uniform(0, 0.5))
             for job_id in list(self.job_dict.keys()):
                 
@@ -180,7 +178,7 @@ class Node():
                     #continue
                     if global_time >= job_time:# and not self.gv.other_jobs_will_exceed(job, global_time):
                         self.make_trace("node", "B")
-                        #print(global_time)
+                        #print(global_time
                         #print(global_time, job.node_runtime_dict.dict[self.node_id]["ts"], job.job_id)
                         #self.gv.other_jobs_will_exceed(job,global_time)
                         packet = job_queue.get()

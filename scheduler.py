@@ -5,6 +5,7 @@ from global_var import global_var
 from cluster import Cluster
 import copy
 from jaca import Jaca
+import time
 
 class Scheduler():
     def __init__(self, gv:global_var, cluster:Cluster):
@@ -15,6 +16,7 @@ class Scheduler():
         self.placer_name = self.gv.placer_name
         
         self.comb_name = "%s-%s" % (self.sched_name, self.placer_name)
+        self.last_sched_ts = float("-inf")
         
         if self.sched_name == "jaca":
             print(f"Scheduler initializing...... [{BLUE}%s * %s, thresh = %.2f{RESET}]" % (self.sched_name, self.placer_name, self.gv.jaca_thresh))
@@ -30,9 +32,15 @@ class Scheduler():
             self.gv.write_trace()
             self.cluster.dump_load()
             os.system("kill -9 %d" % os.getpid())
-            
-        self.cluster.add_node_barrier()
+        
+        curr_ts = self.gv.get_global_time()
+        #self.cluster.add_node_barrier()
         while 1:
+            # TODO: add the sched interval to avoid subsequent sched
+            # it will cause unsufficient load profile
+            
+            self.cluster.add_node_barrier()
+            
             ret_jobs_list = self.gv.get_pending_jobs()
             
             if len(ret_jobs_list) == 0:
@@ -52,9 +60,13 @@ class Scheduler():
             elif self.sched_name == "gputime-shortest":
                 ret_jobs_list.sort(key=lambda job: job.iter_time * job.iter_num * job.worker_num)
             elif self.sched_name == "jaca":
+                #print(job.job_id, len(ret_jobs_list),ret_jobs_list[0].jaca_placement,"iiiii")
+                for j in ret_jobs_list:
+                    j.init_jaca()
                 jacar = Jaca(self.gv, self.cluster, ret_jobs_list)
                 jacar.compute_all_jobs_score()
                 ret_jobs_list.sort(key=lambda job: job.jaca_score)
+                
             else:
                 print("Don't support the scheduler")
                 sys.exit(0)
@@ -82,12 +94,19 @@ class Scheduler():
             elif self.placer_name == "load_balance":
                 placement = self.cluster.load_balance_placement(selected_job)
             elif self.placer_name == "jaca":
-                placement = job.jaca_placement
-            #placement = ["G5","G4","G1","G0"]    
+                placement = selected_job.jaca_placement
+            #placement = ["G0","G4","G1","G5"]    
+            
             if placement:
                 print("Job[%d] is placed on %s" % (selected_job.job_id, placement))
-            
-            #if selected_job.job_id == job_id:
+                
+            if selected_job.is_vision_job():
+                placement.sort(key=lambda x:int(x[1:]))
+
+            # if selected_job.job_id == 0:
+            #     placement = ["G0","G1"]
+            # elif selected_job.job_id == 1:
+            #     placement = ["G2","G3"]
             if placement:
                 self.cluster.set_gpu_busy(placement, selected_job.job_id)
                 selected_job.local_ts = self.gv.get_global_time()
@@ -98,12 +117,13 @@ class Scheduler():
                 selected_job.start_ts = self.gv.get_global_time()
                 selected_job.status = "RUNNING"
                 selected_job.sig = True
+                self.cluster.remove_node_barrier()
             else:
+                # if is a pending job, signal it
+                # else if it is a over job, signalling it or not is not important
                 job.sig = False
-            
-            if not placement:
+                self.cluster.remove_node_barrier()
                 break
-        
-        self.cluster.remove_node_barrier()
+
             
             
