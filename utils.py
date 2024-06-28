@@ -1,6 +1,9 @@
 import math
 import numpy as np
 import os
+import torchvision.models as models
+import torch.nn as nn
+
 MEGA = 10 ** 6
 VOCAB_SIZE = 50000
 NLP_PARAM_SIZE = 2
@@ -8,6 +11,14 @@ MODEL_SIZE = {
     "vgg16":132,#M
     "mobilenet_v2":3.34,
     "resnet50":25.58
+}
+# vision is computed in the utils.py/compute_model_skew()
+# GPT is computed in ~/nanoGPT/compute_skew.py
+SKEW_DICT = {
+    "vgg16":0.74, 
+    "resnet50":0.09,
+    "mobilenet_v2":0.37,
+    "GPT-350M":0.145
 }
 
 # the traffic between 1-2,3-4,5-6
@@ -170,9 +181,60 @@ def remove_duplicates(res):
             unique_dicts.append(d)
 
     return unique_dicts
-# l = [1,2,3,4]
-# balls = 4
-# res = put_balls_in_boxes(l,balls)
 
-# print(res)
-# print(remove_duplicates(res))
+# used by tiresias
+# the largest tensor size / the total tensor size in the model
+from transformers import GPT2Model
+def compute_model_skew(model: nn.Module):
+    total_size = 0
+    max_tensor_size = 0
+
+    # 遍历模型的所有参数
+    for param in model.parameters():
+        tensor_size = param.numel() * param.element_size()
+        total_size += tensor_size
+        if tensor_size > max_tensor_size:
+            max_tensor_size = tensor_size
+
+    # 计算比例
+    ratio = max_tensor_size / total_size
+    return ratio
+
+def get_model_skew(model_name:str):
+    if "pp" in model_name:
+        return SKEW_DICT["GPT-350M"]
+    else:
+        return SKEW_DICT[model_name]
+# model_list = [
+#     models.vgg16(),
+#     models.resnet50(),
+#     models.mobilenet_v2(),
+# ]
+# for model in model_list:
+#     ratio = compute_model_skew(model)
+#     print(model.__class__.__name__,ratio)
+
+def get_key_with_shortest_value(machine_free_dict:dict):
+    # 初始化最短长度为一个很大的数
+    min_length = float('inf')
+    min_key = None
+    
+    # 遍历字典，找出值长度最短的键
+    for key, value in machine_free_dict.items():
+        if len(value) < min_length and len(value) != 0:
+            min_length = len(value)
+            min_key = key
+            
+    return min_key
+machine_free_dict = {
+    0:["G0","G1","G2","G3"],
+    1:["G4","G5","G6"],
+    2:["G8","G9"],
+    3:["G12","G13","G14"]
+}
+selected_gpus = list()
+for i in range(4):
+    min_gpu_machine = get_key_with_shortest_value(machine_free_dict)
+    sel_gpu = machine_free_dict[min_gpu_machine].pop(0)
+    selected_gpus.append(sel_gpu)
+print(selected_gpus)

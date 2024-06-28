@@ -29,6 +29,15 @@ class Cluster():
 
         self.graph = self.init_machine_graph()
         
+        # gandiva proportion
+        self.gandiva_1 = self.gv.gandiva_1
+        self.gandiva_2 = self.gv.gandiva_2
+        self.gandiva_4 = self.gv.gandiva_4
+        
+        self.gandiva_machine_dict = self.init_gandiva()#[self.gandiva_1, self.gandiva_2, self.gandiva_4]
+       
+        
+        
         print("Cluster   initializing...... " + \
               f"[{BLUE}%d machines * %d gpus per machine = %d gpus{RESET}] " % (self.machine_num, self.gpus_per_machine, self.total_gpus) + \
               f"[{BLUE}division = %d{RESET}]" % (self.division)
@@ -200,10 +209,13 @@ class Cluster():
                 selected_gpus = free_gpu_list[0:worker_num]
                 break
         
-        if not selected_gpus:
-            selected_gpus = free_gpus[0:worker_num]
+        # if we cannot ganrantee the job demand, we will wait,
+        # wait until there are gpus in the same machine
         
-        assert len(selected_gpus) == worker_num
+        # if not selected_gpus:
+        #     selected_gpus = free_gpus[0:worker_num]
+        
+        # assert len(selected_gpus) == worker_num
         
         return selected_gpus
     
@@ -233,6 +245,80 @@ class Cluster():
         
         return selected_gpus
     
+    # always select the gpu in the machine that owns the min gpu to decrease fragmentation
+    def minimum_fragmentation_placement(self, job):
+        selected_gpus = list()
+        worker_num = job.worker_num
+        free_gpus = self.free_gpu_in_cluster()
+        # no enough gpus
+        if len(free_gpus) < worker_num:
+            #print("No enough gpus for the job")
+            return selected_gpus
+
+        machine_free_dict = dict()
+        for mid in range(self.machine_num):
+            machine_free_dict[mid] = self.free_gpu_in_machine("P%d" % mid)
+
+        for i in range(worker_num):
+            min_gpu_machine = utils.get_key_with_shortest_value(machine_free_dict)
+            sel_gpu = machine_free_dict[min_gpu_machine].pop(0)
+            selected_gpus.append(sel_gpu)
+ 
+        return selected_gpus
+    
+    def gandiva_placement(self, job):
+        selected_gpus = list()
+        worker_num = job.worker_num
+        free_gpus = self.free_gpu_in_cluster()
+        # no enough gpus
+        if len(free_gpus) < worker_num:
+            #print("No enough gpus for the job")
+            return selected_gpus
+        
+        gandiva_machine_list = self.gandiva_machine_dict[worker_num]
+        
+        machine_free_dict = dict()
+        for mid in range(self.machine_num):
+            machine_free_dict[mid] = self.free_gpu_in_machine("P%d" % mid)
+        
+        # 1. try to affinity in the machine that host worker-gpu mainly
+        # here we ignore the load, true gandiva will select the least-load machine
+        for mid in range(self.machine_num):
+            if mid in gandiva_machine_list and len(machine_free_dict[mid]) >= worker_num:
+                selected_gpus = machine_free_dict[mid][0:worker_num]
+                break
+        # 2. try to affinity in other affinity machines
+        if not selected_gpus:
+            for mid in range(self.machine_num):
+                if mid not in gandiva_machine_list and len(machine_free_dict[mid]) >= worker_num:
+                    selected_gpus = machine_free_dict[mid][0:worker_num]
+                    break
+        # 3. if still not enough gpu, allocate gpu in order
+        if not selected_gpus:
+            selected_gpus = free_gpus[0:worker_num]
+        
+        return selected_gpus
+
+    # simple, load balance means we allocate gpu in machines to decrease
+    def tiresias_placement(self, job):
+        if job.skew > self.gv.tiresias_skew: # too large, wait
+            return self.consolidate_placement(job)
+        else:
+            return self.minimum_fragmentation_placement(job)
+    
+    def init_gandiva(self): 
+        gandiva_list = [self.gandiva_1, self.gandiva_2, self.gandiva_4]
+        assert sum(gandiva_list) == 1
+        lengths = [int(ratio * self.machine_num) for ratio in self.gandiva_list]
+        assert sum(lengths) == self.machine_num
+
+        machine_list = {
+            1:self.machine_ids[0:lengths[0]],
+            2:self.machine_ids[lengths[0]:lengths[0] + lengths[1]],
+            4:self.machine_ids[lengths[0] + lengths[1]:]
+        }
+        return machine_list
+        
     # jaca use
     def add_load_2_cluster(self, curr_cluster_load:dict, node_name:str, demand:float):
         

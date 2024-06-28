@@ -8,6 +8,8 @@ class global_var():
                  pcie_cap, nic_cap,
                  scheduler, placer, sleep_interval_min, sleep_interval_max, load_sample_interval,
                  jaca_thresh, group_thresh,
+                 gandiva_1, gandiva_2, gandiva_4,
+                 tiresias_skew,
                  job_tput_sample_len, result_dir,
                  trace_file):
         # some global varibles to be used by other modules like job and cluster and scheduler 
@@ -38,6 +40,14 @@ class global_var():
         # job param
         self.job_tput_sample_len = job_tput_sample_len
         self.result_dir = result_dir
+        
+        # gandiva param
+        self.gandiva_1 = gandiva_1
+        self.gandiva_2 = gandiva_2
+        self.gandiva_4 = gandiva_4
+        
+        # tiresias param
+        self.tiresias_skew = tiresias_skew
         
         # job trace(input)
         self.trace_file = trace_file

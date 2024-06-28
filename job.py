@@ -20,6 +20,7 @@ class Job():
         self.iter_num   = config["iter_num"]
         self.iter_time  = config["iter_time"]
         self.label      = config["model_name"] + "-" + str(config["worker_num"])
+        self.skew       = config["tensor_skew"] # tiresias use
         
         self.arrive_ts  = config["arrive_time"]
         self.start_ts   = self.arrive_ts

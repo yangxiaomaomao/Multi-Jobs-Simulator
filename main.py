@@ -33,6 +33,14 @@ parser.add_argument('-lsi', '--load-sample-interval', default=2, type=float, hel
 parser.add_argument('-jt', '--jaca-thresh', default=1.2, type=float, help="the jaca threshold")
 parser.add_argument('-gt', '--group-thresh', default=2, type=int, help="the group threshold in jaca")
 
+# gandiva affinity
+parser.add_argument('-gd1', '--gandiva-1', default=0.25, type=float, help="the gandiva-1 affinity proportion")
+parser.add_argument('-gd2', '--gandiva-2', default=0.5, type=float, help="the gandiva-2 affinity proportion")
+parser.add_argument('-gd4', '--gandiva-4', default=0.25, type=float, help="the gandiva-4 affinity proportion")
+
+# tiresias
+parser.add_argument('-tsk', '--tiresias-skew', default=0.2, type=float, help="the tiresias skew threshold")
+
 # job
 parser.add_argument("-jsl", "--job-tput-sample-len", default=3, type=int, help="the throughput sample length of the job")
 parser.add_argument("-rd", "--result-dir", required=True, type=str, help="the result dir")
@@ -46,6 +54,8 @@ gv = global_var(args.scale_factor, args.division, args.machine_num, args.gpus_pe
                 args.scheduler, args.placement, 
                 args.sleep_interval_min, args.sleep_interval_max, args.load_sample_interval,
                 args.jaca_thresh, args.group_thresh,
+                args.gandiva_1, args.gandiva_2, args.gandiva_4,
+                args.tiresias_skew,
                 args.job_tput_sample_len, args.result_dir,
                 args.trace_file)
 

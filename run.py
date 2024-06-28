@@ -22,10 +22,13 @@ def sort_file_by_time(result_dir):
     os.system("mv %s %s" % (output_file, input_file))
 
 
+jaca_thresh_list = [2.0,1.8,1.6,1.4,1.2,1.0,0.8,0.6]
 # ["fifo","smallest", "time-shortest", "gputime-shortest", "jaca"]
-sched_list = ["fifo","smallest", "time-shortest", "gputime-shortest", "jaca"]
+sched_list = ["fifo"]#-thresh%f" % thresh for thresh in jaca_thresh_list]#["fifo","smallest", "time-shortest", "gputime-shortest", "jaca"]
 # ["consolidate", "load_balance","jaca"]
-placer_list = ["consolidate", "jaca"]
+placer_list = ["jaca-thresh%2.1f" % thresh for thresh in jaca_thresh_list]#["consolidate", "jaca"]
+placer_list = ["gandiva"] # tiresias
+
 timer_dict = dict()
 
 gem = 4 # gpus num per machine
@@ -49,7 +52,17 @@ group_thresh = 4 # at least `param` group when classifying workers
 
 job_tput_sample_len = 3 # the throughput sample length of the job
 
-possion_interval = [40,45,50,55,60,65]
+# 10s trace is to test function
+possion_interval = [10]#20,25,30,35,40,45,55,60,65]
+
+# gandiva affinity proportion
+gandiva_1 = 0.25
+gandiva_2 = 0.5
+gandiva_4 = 0.25
+
+# tiresias skew_thresh
+tiresias_skew = 0.2
+
 
 # get trace from other machine
 #os.system("scp yangxiaomao@10.156.169.36:~/cmder/trace/job_trace.json %s" % trace_file)
@@ -59,8 +72,8 @@ assert mn * gem > 0
 for interval in possion_interval:
     for sched in sched_list:
         for placer in placer_list:
-            if (sched == "jaca" or placer == "jaca") and sched != placer:# when sched is jaca, placer must be jaca, otherwise, we jump to next loop
-                continue
+            if ("jaca" in sched or "jaca" in placer) and sched != placer:# when sched is jaca, placer must be jaca, otherwise, we jump to next loop
+                pass#continue
             all_scheme_res_dir = "%s/result-interval-%ds" % (all_trace_result_dir, interval)
             result_dir = "%s/%s-%s" % (all_scheme_res_dir, sched, placer)
             # the trace file containing the arrive time and the model spec(comm pattern, iter num and so on)
@@ -82,8 +95,10 @@ for interval in possion_interval:
                         "-d %d -sf %d " % (division, sf) + \
                         "-tr %s " % trace_file + \
                         "-simin %f -simax %f -lsi %f " % (sleep_interval_min, sleep_interval_max, load_sample_interval) + \
-                        "-jt %f -gt %d " % (jaca_thresh, group_thresh) + \
-                        "-jsl %d -rd %s " % (job_tput_sample_len, result_dir)
+                        "-jt %f -gt %d " % (float(placer[11:]), group_thresh) + \
+                        "-jsl %d -rd %s " % (job_tput_sample_len, result_dir) + \
+                        "-gd1 %f -gd2 %f -gd4 %f " % (gandiva_1, gandiva_2, gandiva_4) + \
+                        "-tsk %f " % tiresias_skew
                     )
             end_time = time.time()
             

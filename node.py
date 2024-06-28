@@ -58,7 +58,7 @@ class Node():
         ts_list = list(self.recorder.keys())
         sample_start = max(0, curr_ts - self.load_sample_interval * 1000)
         ts_list_sample = [ts for ts in ts_list 
-                          if ts >= sample_start and ts <= curr_ts]
+                          if ts >= sample_start and ts < curr_ts]
 
         if not ts_list_sample:
             return 0

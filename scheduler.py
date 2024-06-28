@@ -59,7 +59,7 @@ class Scheduler():
                 ret_jobs_list.sort(key=lambda job: job.iter_time * job.iter_num)
             elif self.sched_name == "gputime-shortest":
                 ret_jobs_list.sort(key=lambda job: job.iter_time * job.iter_num * job.worker_num)
-            elif self.sched_name == "jaca":
+            elif "jaca" in self.sched_name:
                 #print(job.job_id, len(ret_jobs_list),ret_jobs_list[0].jaca_placement,"iiiii")
                 for j in ret_jobs_list:
                     j.init_jaca()
@@ -93,8 +93,11 @@ class Scheduler():
                 #placement = ["G0","G1"]
             elif self.placer_name == "load_balance":
                 placement = self.cluster.load_balance_placement(selected_job)
-            elif self.placer_name == "jaca":
+            elif self.placer_name == "gandiva":
+                placement = self.cluster.gandiva_placement(selected_job)
+            elif "jaca" in self.placer_name:
                 placement = selected_job.jaca_placement
+            
             #placement = ["G0","G4","G1","G5"]    
             
             if placement:

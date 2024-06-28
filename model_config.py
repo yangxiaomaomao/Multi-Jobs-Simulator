@@ -1,5 +1,6 @@
 from utils import get_embedding_traffic_size, get_pp_peer_traffic_size, get_tp_peer_traffic_size
 from utils import get_vision_job_demand, get_nlp_job_demand, get_comm_time
+from utils import get_model_skew, SKEW_DICT
 import numpy as np
 import job
 import json
@@ -319,9 +320,10 @@ def parse_job_trace(gv, cluster, scheduler):
             
             job_to_add = copy.deepcopy(parse_job_dict[model_name])
             
-        job_to_add["iter_num"] = int(iter_num / scale_factor)
+        job_to_add["iter_num"]    = int(iter_num / scale_factor)
         job_to_add["arrive_time"] = new_job["arrive_time"] * 1000 / scale_factor # ms
-        job_to_add["id"] = new_job["id"]
+        job_to_add["id"]          = new_job["id"]
+        job_to_add["tensor_skew"] = get_model_skew(model_name)
 
 
         job_class = job.Job(job_to_add,cluster,gv,scheduler)
