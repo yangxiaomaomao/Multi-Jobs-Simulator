@@ -191,7 +191,7 @@ class Node():
                             cap = 10.08 * 1000
                         else:
                             cap = self.cap
-                        
+                        #cap = self.cap
                         time_cost = packet.pkt_size / cap * contention_level * 1000
                             #print(time_cost)
                             #print((packet.pkt_size * packet.pkt_num / 2 * 0.89 + 27))

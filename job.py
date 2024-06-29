@@ -53,7 +53,7 @@ class Job():
         
         self.record_pth = self.gv.result_dir
 
-        self.res_file   = os.path.join(self.record_pth, "res.csv")
+        self.res_file   = os.path.join(self.record_pth, "ares.csv")
         print(self.res_file)
         self.tput_file  = os.path.join(self.record_pth, "job-%d-tput.txt" % self.job_id)
 

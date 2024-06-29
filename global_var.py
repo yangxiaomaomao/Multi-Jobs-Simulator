@@ -127,6 +127,7 @@ class global_var():
         return ret_jobs_list
     
     def write_trace(self):
+        return
         print("Generating trace......")
         trace = {"traceEvents": self.tracer}
         with open(self.tracer_name, "w") as f:

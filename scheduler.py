@@ -95,6 +95,8 @@ class Scheduler():
                 placement = self.cluster.load_balance_placement(selected_job)
             elif self.placer_name == "gandiva":
                 placement = self.cluster.gandiva_placement(selected_job)
+            elif self.placer_name == "tiresias":
+                placement = self.cluster.tiresias_placement(selected_job)
             elif "jaca" in self.placer_name:
                 placement = selected_job.jaca_placement
             

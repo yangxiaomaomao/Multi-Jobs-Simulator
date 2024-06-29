@@ -309,7 +309,7 @@ class Cluster():
     def init_gandiva(self): 
         gandiva_list = [self.gandiva_1, self.gandiva_2, self.gandiva_4]
         assert sum(gandiva_list) == 1
-        lengths = [int(ratio * self.machine_num) for ratio in self.gandiva_list]
+        lengths = [int(ratio * self.machine_num) for ratio in gandiva_list]
         assert sum(lengths) == self.machine_num
 
         machine_list = {
