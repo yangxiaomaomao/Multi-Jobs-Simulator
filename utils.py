@@ -1,7 +1,7 @@
 import math
 import numpy as np
 import os
-import torchvision.models as models
+#import torchvision.models as models
 import torch.nn as nn
 
 MEGA = 10 ** 6
@@ -184,7 +184,7 @@ def remove_duplicates(res):
 
 # used by tiresias
 # the largest tensor size / the total tensor size in the model
-from transformers import GPT2Model
+
 def compute_model_skew(model: nn.Module):
     total_size = 0
     max_tensor_size = 0
@@ -226,15 +226,3 @@ def get_key_with_shortest_value(machine_free_dict:dict):
             min_key = key
             
     return min_key
-machine_free_dict = {
-    0:["G0","G1","G2","G3"],
-    1:["G4","G5","G6"],
-    2:["G8","G9"],
-    3:["G12","G13","G14"]
-}
-selected_gpus = list()
-for i in range(4):
-    min_gpu_machine = get_key_with_shortest_value(machine_free_dict)
-    sel_gpu = machine_free_dict[min_gpu_machine].pop(0)
-    selected_gpus.append(sel_gpu)
-print(selected_gpus)

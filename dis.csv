@@ -3,3 +3,4 @@ machine, func
 13, comm_level
 12, cap
 14, cluster size
+fpga7, jaca_thresh
