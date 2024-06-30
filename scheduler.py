@@ -72,7 +72,8 @@ class Scheduler():
                 sys.exit(0)
                 
             selected_job = ret_jobs_list[0]
-            
+            if selected_job.gpus_use:
+                continue
             if self.placer_name == "consolidate":
                 placement = self.cluster.consolidate_placement(selected_job)
                 # print(job.label,"ooooooooo")

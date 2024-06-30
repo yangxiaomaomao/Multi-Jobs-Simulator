@@ -1,6 +1,6 @@
-machine, func
-11, interval
-13, comm_level
-12, cap
-14, cluster size
-fpga7, jaca_thresh
+machine, func, left
+11, interval, interval-5
+13, comm_level, over
+12, cap, over
+14, cluster size, left-4
+fpga7, jaca_thresh, over

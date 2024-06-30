@@ -413,7 +413,9 @@ class Cluster():
         # attention, if cluster = 3, the label may only contain 2 kinds, e.g. [0,0,1]
         #print("range",cluster_range,min(len(samples) - 1, group_thresh) + 1)
         for cluster in cluster_range:
-            kmeans = KMeans(n_clusters=cluster, n_init=10)
+            np.random.seed(42)
+            
+            kmeans = KMeans(n_clusters=cluster, n_init=10, random_state=42)
             kmeans.fit(samples)
             labels = kmeans.labels_
             silhouette_avg = silhouette_score(samples, labels)

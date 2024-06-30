@@ -63,7 +63,7 @@ baseline_list = [
     "gandiva",
     "yarn",
     "k8s",
-    #"jaca"
+    "jaca"
 ]
 # sched_list = ["fifo","smallest", "time-shortest", "gputime-shortest"]
 # # ["consolidate", "load_balance","jaca"]
@@ -95,7 +95,7 @@ group_thresh = 4 # at least `param` group when classifying workers
 job_tput_sample_len = 3 # the throughput sample length of the job
 
 # 10s trace is to test function
-interval_list = [10,40,80,160,240]
+interval_list = [5]
 
 # gandiva affinity proportion
 gandiva_1 = 0.25

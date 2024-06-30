@@ -276,13 +276,20 @@ class Job():
                     for node_id in list(self.node_runtime_dict.dict.keys()):
                         node = self.node_runtime_dict.get(node_id)["node"]
                         
-                        job_event = {
-                            "job_id":self.job_id,
-                            "start_time":self.local_ts,
-                            "data_size":self.node_load[node],
-                            "type":self.pattern,
-                            "iters":self.iter_counter,
-                        }
+                        try:
+                            job_event = {
+                                "job_id":self.job_id,
+                                "start_time":self.local_ts,
+                                "data_size":self.node_load[node],
+                                "type":self.pattern,
+                                "iters":self.iter_counter,
+                            }
+                        except:
+                            import sys
+                            print("Job[%d]" % self.job_id)
+                            print(self.node_runtime_dict.dict)
+                            print(self.node_load)
+                            sys.exit(0)
                   
                         node.add_event(job_event)
                     #self.node_runtime_dict.dump()
