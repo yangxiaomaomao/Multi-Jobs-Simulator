@@ -60,8 +60,8 @@ class Jaca():
         # print(job_dep_node)
         for node_id, load in load_factor.items():
             dep = job_dep_node[node_id] if node_id in list(job_dep_node.keys()) else 0
-            load_factor[node_id] *= (dep * (1 - 0.5) + 0.5)
-        
+            load_factor[node_id] *= (dep * (1 - 0.9) + 0.9)
+        #print("lllllllll")
         #print(load_factor)     
         #print(candi,load_factor,job_use_node)
         # minmax, 在所有摆放中，我们只关注最大负载的节点

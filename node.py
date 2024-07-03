@@ -177,14 +177,12 @@ class Node():
                     #print(sum(accum_gv_time),"l",time.time() - start_time)
                     #continue
                     if global_time >= job_time:# and not self.gv.other_jobs_will_exceed(job, global_time):
-                        self.make_trace("node", "B")
+                       
                         #print(global_time
                         #print(global_time, job.node_runtime_dict.dict[self.node_id]["ts"], job.job_id)
                         #self.gv.other_jobs_will_exceed(job,global_time)
                         packet = job_queue.get()
-                        self.make_trace("cont", "B")
                         contention_level = self.get_contention_num(job)
-                        self.make_trace("cont", "E")
                         #print("cl",contention_level,job.job_id,job.node_runtime_dict.dict)
                         
                         if "-4" in job.label and "gpt" not in job.label and self.node_type == "SW":
@@ -209,17 +207,13 @@ class Node():
                         if not self.is_tor_node():
                             log_event(global_time, event, "START", self.node_id)
                             log_event(global_time + time_cost, event, "END", self.node_id)
-                        self.make_trace("update", "B")
-                        self.update_job_ts(job, time_cost)
-                        self.make_trace("update", "E")
                         
-                        self.make_trace("wake", "B")
+                        self.update_job_ts(job, time_cost)
+                        
+                        
                         if packet.pkt_id == packet.pkt_num - 1:
                             self.job_dict.pop(job_id)
                             self.wake_job(job_id)
-                        self.make_trace("wake", "E")
-                        self.make_trace("node", "E")
-                        #print(sum(accum_gv_time),"l")
                     else:
                         time.sleep(random.uniform(self.sleep_interval_min,self.sleep_interval_max))
                     #end_time = time.time()

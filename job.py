@@ -176,7 +176,6 @@ class Job():
     
             
     def generate_event(self):
-        self.make_trace("pending", "B")
         while 1:
             #print(self.job_id)
             #time.sleep(random.uniform(0, 0.5))
@@ -229,7 +228,7 @@ class Job():
 
                 log_job_info(self.start_ts, self.job_id, "START", "-".join(self.gpus_use), self.res_file)
                 print(f"{GREEN}Time[%5.2fms]: Job[%d] start in %s{RESET}" % (self.start_ts, self.job_id, "-".join(self.gpus_use)))
-                self.make_trace("pending", "E")
+                
                 break
             else:
                 #print("ghj",self.job_id)
@@ -256,20 +255,15 @@ class Job():
             #print(self.get_tput_dict())
             #print(self.get_node_dependence())
             if self.local_ts <= global_time:
-                self.make_trace("run%d" % self.iter_counter, "B")
                 
                 if self.is_comp():
-                    self.make_trace("comp", "B")
                     if self.iter_counter == 0:
                         self.init_node_runtime(self.node_use_list, self.local_ts + self.comp_time + self.startup_overhead * 1000 / self.gv.scale_factor, 0)
                     else:
                         self.init_node_runtime(self.node_use_list, self.local_ts + self.comp_time, 0)
                     self.switch_pattern()
-                    self.make_trace("comp", "E")
                     
                 elif self.is_comm():
-                    #s_time = time.time()
-                    self.make_trace("comm", "B")
                     self.init_node_runtime(self.node_use_list, self.local_ts, 1)
                     #print(self.local_ts,"oooo")
                     #self.node_runtime_dict.dump()
@@ -294,12 +288,9 @@ class Job():
                         node.add_event(job_event)
                     #self.node_runtime_dict.dump()
                     
-                    self.make_trace("sleep", "B")
                     if self.worker_num != 1:
                         self.jsleep()
-                    self.make_trace("sleep", "E")
                     self.switch_pattern()
-                    self.make_trace("comm", "E")
                     self.iter_counter += 1
 
                     local_ts = self.get_local_ts()
@@ -312,7 +303,6 @@ class Job():
                         print("Job[%d] iter[%d] cost %5.2fms" % (
                             self.job_id, self.iter_counter - 1, local_ts - self.recorder[self.iter_counter - 2]))
 
-                self.make_trace("run%d" % self.iter_counter, "E")
                 
             else:
                 time.sleep(random.uniform(self.sleep_interval_min,self.sleep_interval_max))

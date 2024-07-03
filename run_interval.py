@@ -3,6 +3,8 @@ import sys
 import time
 import re
 import numpy as np
+import multiprocessing
+
 def get_time_in_line(line)->float:
     pattern = re.compile(r"DEBUG:root:Time\[(\d+\.\d+) ms\]")
     res = float(pattern.findall(line)[0])
@@ -59,11 +61,11 @@ baseline_list = [
     "aef-te",
     "slf-te",
     "spf-te",
-    "fgf-te",
-    "gandiva",
-    "yarn",
-    "k8s",
-    "jaca"
+    # "fgf-te",
+    # "gandiva",
+    # "yarn",
+    # "k8s",
+    # "jaca"
 ]
 # sched_list = ["fifo","smallest", "time-shortest", "gputime-shortest"]
 # # ["consolidate", "load_balance","jaca"]
@@ -87,7 +89,7 @@ sleep_interval_min = 0.01 # sleep too short will burden the thread
 sleep_interval_max = 0.05 # sleep too long will delay the job
 load_sample_interval = 0.3 # 2s, to get the node load during the passed 0.5s
 
-all_trace_result_dir = "result_interval"
+all_trace_result_dir = "result_test"
 # jaca param
 jaca_thresh = 1 # if jaca_score is larger than jaca_thresh, we will postpone the exec of the job, even if there is enough resources
 group_thresh = 4 # at least `param` group when classifying workers
@@ -95,7 +97,7 @@ group_thresh = 4 # at least `param` group when classifying workers
 job_tput_sample_len = 3 # the throughput sample length of the job
 
 # 10s trace is to test function
-interval_list = [5]
+interval_list = [5,10]
 
 # gandiva affinity proportion
 gandiva_1 = 0.25
@@ -110,38 +112,50 @@ tiresias_skew = 0.2
 
 assert mn * gem > 0
 
-for interval in interval_list:
-    for baseline in baseline_list:
-        sched, placer = parse_sched(baseline)
-        interval_dir = "%s/interval-%ds" % (all_trace_result_dir, interval)
-        result_dir = "%s/%s-%s" % (interval_dir, sched, placer)
-        # the trace file containing the arrive time and the model spec(comm pattern, iter num and so on)
-        trace_file = "trace/poisson_interval_%d.json" % interval
-        
-        os.makedirs(result_dir, exist_ok=True)
-        os.system("rm -f %s/*.txt" % result_dir)
-        os.system("cp %s %s" % (trace_file, interval_dir))
-        os.system("cp plot.ipynb %s" % interval_dir)
-        
-        print("*"*20 + "Running %s-%s" % (sched, placer) + "*" * 20)
-        
-        
-        start_time = time.time()
-        os.system("python main.py " + \
-                    "-s %s -p %s " % (sched, placer) + \
-                    "-gem %d -mn %d " % (gem, mn) + \
-                    "-pc %f -nc %f " % (pcie_cap, nic_cap) + \
-                    "-d %d -sf %d " % (division, sf) + \
-                    "-tr %s " % trace_file + \
-                    "-simin %f -simax %f -lsi %f " % (sleep_interval_min, sleep_interval_max, load_sample_interval) + \
-                    "-jt %f -gt %d " % (jaca_thresh, group_thresh) + \
-                    "-jsl %d -rd %s " % (job_tput_sample_len, result_dir) + \
-                    "-gd1 %f -gd2 %f -gd4 %f " % (gandiva_1, gandiva_2, gandiva_4) + \
-                    "-tsk %f " % tiresias_skew
-                )
-        end_time = time.time()
-        
-        sort_file_by_time(result_dir) 
-        print("*"*20 + "%s-%s cost %.2fs" % (sched, placer, end_time - start_time) + "*" * 20)
-        timer_dict["%s-%s" % (sched, placer)] = end_time - start_time
-        print(timer_dict)
+def run(interval, baseline):
+    sched, placer = parse_sched(baseline)
+    interval_dir = "%s/interval-%ds" % (all_trace_result_dir, interval)
+    result_dir = "%s/%s-%s" % (interval_dir, sched, placer)
+    # the trace file containing the arrive time and the model spec(comm pattern, iter num and so on)
+    trace_file = "trace/poisson_interval_%d.json" % interval
+    
+    os.makedirs(result_dir, exist_ok=True)
+    os.system("rm -f %s/*.txt" % result_dir)
+    os.system("cp %s %s" % (trace_file, interval_dir))
+    os.system("cp plot.ipynb %s" % interval_dir)
+    
+    print("*"*20 + "Running %s-%s" % (sched, placer) + "*" * 20)
+    
+    
+    start_time = time.time()
+    os.system("python main.py " + \
+                "-s %s -p %s " % (sched, placer) + \
+                "-gem %d -mn %d " % (gem, mn) + \
+                "-pc %f -nc %f " % (pcie_cap, nic_cap) + \
+                "-d %d -sf %d " % (division, sf) + \
+                "-tr %s " % trace_file + \
+                "-simin %f -simax %f -lsi %f " % (sleep_interval_min, sleep_interval_max, load_sample_interval) + \
+                "-jt %f -gt %d " % (jaca_thresh, group_thresh) + \
+                "-jsl %d -rd %s " % (job_tput_sample_len, result_dir) + \
+                "-gd1 %f -gd2 %f -gd4 %f " % (gandiva_1, gandiva_2, gandiva_4) + \
+                "-tsk %f " % tiresias_skew
+            )
+    end_time = time.time()
+    
+    sort_file_by_time(result_dir) 
+    print("*"*20 + "%s-%s cost %.2fs" % (sched, placer, end_time - start_time) + "*" * 20)
+    timer_dict["%s-%s" % (sched, placer)] = end_time - start_time
+    #print(timer_dict)
+    
+if __name__ == "__main__":
+    process_list = []
+    start_time = time.time()
+    for interval in interval_list:
+        for baseline in baseline_list:
+            p = multiprocessing.Process(target=run, args=(interval, baseline))
+            process_list.append(p)
+            p.start()
+    for p in process_list:
+        p.join()
+    print("Total cost %.2fs" % (time.time() - start_time))
+    #print(timer_dict)
