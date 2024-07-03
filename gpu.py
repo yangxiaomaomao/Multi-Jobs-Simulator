@@ -4,6 +4,8 @@ from logger import log_event
 from global_var import global_var
 from threading import Lock
 import sys
+
+import math
 class Gpu(): 
     def __init__(self, gv:global_var):
         self.exec_queue = Queue(100)
