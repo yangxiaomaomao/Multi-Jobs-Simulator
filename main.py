@@ -47,7 +47,7 @@ parser.add_argument("-rd", "--result-dir", required=True, type=str, help="the re
 
 args = parser.parse_args()
 
-print(args.nic_capacity,"ppp")
+
 #sys.exit(0)
 # init global vars
 gv = global_var(args.scale_factor, args.division, args.machine_num, args.gpus_per_machine, 
