@@ -1,0 +1,1 @@
+{"label": "GPT-350M", "id": 3, "parallel_spec": {"tp": 8, "pp": 1}, "arrive_time": 2653.296670470833, "model_spec": {"iter_num": 64175, "iter_time": 100.0}, "jaca_score": 1000000, "model_type": "transformer", "worker_num": 8}

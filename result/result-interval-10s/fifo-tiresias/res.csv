@@ -1,0 +1,6 @@
+DEBUG:root:Time[0.00000 ms]: Job[ 0], ARRIVE, gpt-2
+DEBUG:root:Time[0.00000 ms]: Job[ 0], START, G0-G1
+DEBUG:root:Time[20.79441 ms]: Job[ 1], ARRIVE, gpt-4
+DEBUG:root:Time[20.79441 ms]: Job[ 1], START, G2-G3-G4-G5
+DEBUG:root:Time[5163.80718 ms]: Job[ 1], END, 5143.012768176894
+DEBUG:root:Time[9246.17170 ms]: Job[ 0], END, 9246.171695906412

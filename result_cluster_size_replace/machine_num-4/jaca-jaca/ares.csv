@@ -1,0 +1,127 @@
+DEBUG:root:Time[0.00000 ms]: Job[ 0], ARRIVE, gpt-4
+DEBUG:root:Time[493.99562 ms]: Job[ 1], ARRIVE, gpt-8
+DEBUG:root:Time[975.27477 ms]: Job[ 2], ARRIVE, gpt-4
+DEBUG:root:Time[1341.86104 ms]: Job[ 3], ARRIVE, vgg16-4
+DEBUG:root:Time[1349.78009 ms]: Job[ 4], ARRIVE, gpt-8
+DEBUG:root:Time[1604.76832 ms]: Job[ 5], ARRIVE, vgg16-4
+DEBUG:root:Time[1707.88227 ms]: Job[ 6], ARRIVE, resnet50-4
+DEBUG:root:Time[1866.23782 ms]: Job[ 7], ARRIVE, gpt-8
+DEBUG:root:Time[2098.67839 ms]: Job[ 8], ARRIVE, gpt-2
+DEBUG:root:Time[2145.36696 ms]: Job[ 9], ARRIVE, gpt-2
+DEBUG:root:Time[2214.24290 ms]: Job[10], ARRIVE, gpt-8
+DEBUG:root:Time[2488.97607 ms]: Job[11], ARRIVE, resnet50-1
+DEBUG:root:Time[2820.01555 ms]: Job[12], ARRIVE, gpt-4
+DEBUG:root:Time[3231.53199 ms]: Job[13], ARRIVE, gpt-8
+DEBUG:root:Time[3554.95984 ms]: Job[14], ARRIVE, gpt-4
+DEBUG:root:Time[3563.05306 ms]: Job[15], ARRIVE, gpt-4
+DEBUG:root:Time[3589.93777 ms]: Job[16], ARRIVE, vgg16-8
+DEBUG:root:Time[3891.41434 ms]: Job[17], ARRIVE, gpt-8
+DEBUG:root:Time[3950.65290 ms]: Job[18], ARRIVE, gpt-8
+DEBUG:root:Time[4014.37688 ms]: Job[19], ARRIVE, gpt-4
+DEBUG:root:Time[4436.72404 ms]: Job[20], ARRIVE, gpt-8
+DEBUG:root:Time[5084.84393 ms]: Job[21], ARRIVE, resnet50-1
+DEBUG:root:Time[5263.55529 ms]: Job[22], ARRIVE, gpt-2
+DEBUG:root:Time[5306.23101 ms]: Job[23], ARRIVE, vgg16-4
+DEBUG:root:Time[5624.89827 ms]: Job[24], ARRIVE, gpt-8
+DEBUG:root:Time[5771.80351 ms]: Job[25], ARRIVE, gpt-8
+DEBUG:root:Time[5987.95986 ms]: Job[26], ARRIVE, gpt-8
+DEBUG:root:Time[6384.34034 ms]: Job[27], ARRIVE, vgg16-8
+DEBUG:root:Time[6518.26478 ms]: Job[28], ARRIVE, gpt-8
+DEBUG:root:Time[6667.55587 ms]: Job[29], ARRIVE, gpt-4
+DEBUG:root:Time[6914.03494 ms]: Job[30], ARRIVE, gpt-2
+DEBUG:root:Time[7141.98347 ms]: Job[31], ARRIVE, vgg16-8
+DEBUG:root:Time[7209.81351 ms]: Job[32], ARRIVE, gpt-8
+DEBUG:root:Time[7224.91477 ms]: Job[33], ARRIVE, gpt-2
+DEBUG:root:Time[7544.71022 ms]: Job[34], ARRIVE, gpt-8
+DEBUG:root:Time[7686.80473 ms]: Job[35], ARRIVE, vgg16-2
+DEBUG:root:Time[7773.31839 ms]: Job[36], ARRIVE, gpt-4
+DEBUG:root:Time[7928.16118 ms]: Job[37], ARRIVE, vgg16-1
+DEBUG:root:Time[7994.46573 ms]: Job[38], ARRIVE, gpt-2
+DEBUG:root:Time[8075.02355 ms]: Job[39], ARRIVE, gpt-8
+DEBUG:root:Time[8288.61008 ms]: Job[40], ARRIVE, gpt-4
+DEBUG:root:Time[8465.23705 ms]: Job[41], ARRIVE, gpt-4
+DEBUG:root:Time[8548.34514 ms]: Job[42], ARRIVE, gpt-4
+DEBUG:root:Time[8657.16981 ms]: Job[43], ARRIVE, vgg16-1
+DEBUG:root:Time[8721.81703 ms]: Job[44], ARRIVE, vgg16-4
+DEBUG:root:Time[8910.93472 ms]: Job[45], ARRIVE, gpt-2
+DEBUG:root:Time[8949.13179 ms]: Job[46], ARRIVE, gpt-8
+DEBUG:root:Time[9146.65296 ms]: Job[47], ARRIVE, resnet50-1
+DEBUG:root:Time[9525.31838 ms]: Job[48], ARRIVE, gpt-4
+DEBUG:root:Time[9562.16623 ms]: Job[49], ARRIVE, vgg16-1
+DEBUG:root:Time[9849.33393 ms]: Job[50], ARRIVE, gpt-2
+DEBUG:root:Time[9963.15676 ms]: Job[51], ARRIVE, gpt-8
+DEBUG:root:Time[10289.92939 ms]: Job[52], ARRIVE, gpt-4
+DEBUG:root:Time[10642.98566 ms]: Job[53], ARRIVE, resnet50-1
+DEBUG:root:Time[10977.11018 ms]: Job[54], ARRIVE, vgg16-4
+DEBUG:root:Time[11171.50174 ms]: Job[55], ARRIVE, gpt-8
+DEBUG:root:Time[11408.12365 ms]: Job[56], ARRIVE, mobilenet-8
+DEBUG:root:Time[11633.47045 ms]: Job[57], ARRIVE, vgg16-1
+DEBUG:root:Time[11753.61055 ms]: Job[58], ARRIVE, gpt-8
+DEBUG:root:Time[11909.75330 ms]: Job[59], ARRIVE, gpt-4
+DEBUG:root:Time[12060.48095 ms]: Job[60], ARRIVE, gpt-4
+DEBUG:root:Time[12068.66854 ms]: Job[61], ARRIVE, gpt-8
+DEBUG:root:Time[12335.47169 ms]: Job[62], ARRIVE, gpt-8
+DEBUG:root:Time[12545.36055 ms]: Job[63], ARRIVE, vgg16-4
+DEBUG:root:Time[12871.27398 ms]: Job[64], ARRIVE, gpt-8
+DEBUG:root:Time[13004.54416 ms]: Job[65], ARRIVE, gpt-8
+DEBUG:root:Time[13108.05064 ms]: Job[66], ARRIVE, vgg16-2
+DEBUG:root:Time[13182.83508 ms]: Job[67], ARRIVE, vgg16-4
+DEBUG:root:Time[13359.35390 ms]: Job[68], ARRIVE, gpt-8
+DEBUG:root:Time[13378.40270 ms]: Job[69], ARRIVE, gpt-4
+DEBUG:root:Time[13594.57586 ms]: Job[70], ARRIVE, gpt-2
+DEBUG:root:Time[14221.31520 ms]: Job[71], ARRIVE, resnet50-1
+DEBUG:root:Time[14702.00948 ms]: Job[72], ARRIVE, gpt-2
+DEBUG:root:Time[15158.85568 ms]: Job[73], ARRIVE, gpt-2
+DEBUG:root:Time[15250.44955 ms]: Job[74], ARRIVE, gpt-4
+DEBUG:root:Time[15513.56125 ms]: Job[75], ARRIVE, gpt-8
+DEBUG:root:Time[15675.92559 ms]: Job[76], ARRIVE, resnet50-8
+DEBUG:root:Time[15909.23285 ms]: Job[77], ARRIVE, gpt-4
+DEBUG:root:Time[15976.91342 ms]: Job[78], ARRIVE, gpt-8
+DEBUG:root:Time[16179.69163 ms]: Job[79], ARRIVE, gpt-4
+DEBUG:root:Time[16190.38534 ms]: Job[80], ARRIVE, vgg16-2
+DEBUG:root:Time[16448.02070 ms]: Job[81], ARRIVE, resnet50-4
+DEBUG:root:Time[16525.07502 ms]: Job[82], ARRIVE, gpt-4
+DEBUG:root:Time[16564.31010 ms]: Job[83], ARRIVE, gpt-4
+DEBUG:root:Time[16651.80970 ms]: Job[84], ARRIVE, resnet50-8
+DEBUG:root:Time[16690.99342 ms]: Job[85], ARRIVE, gpt-4
+DEBUG:root:Time[17224.17846 ms]: Job[86], ARRIVE, gpt-8
+DEBUG:root:Time[17296.56897 ms]: Job[87], ARRIVE, gpt-8
+DEBUG:root:Time[17321.23624 ms]: Job[88], ARRIVE, mobilenet-4
+DEBUG:root:Time[17348.19653 ms]: Job[89], ARRIVE, vgg16-1
+DEBUG:root:Time[17653.40110 ms]: Job[90], ARRIVE, gpt-8
+DEBUG:root:Time[18048.96848 ms]: Job[91], ARRIVE, mobilenet-8
+DEBUG:root:Time[18056.80831 ms]: Job[92], ARRIVE, vgg16-8
+DEBUG:root:Time[18084.86131 ms]: Job[93], ARRIVE, vgg16-1
+DEBUG:root:Time[18565.09892 ms]: Job[94], ARRIVE, gpt-2
+DEBUG:root:Time[18721.92151 ms]: Job[95], ARRIVE, mobilenet-1
+DEBUG:root:Time[19281.47412 ms]: Job[96], ARRIVE, gpt-4
+DEBUG:root:Time[19470.07457 ms]: Job[97], ARRIVE, resnet50-8
+DEBUG:root:Time[19791.59390 ms]: Job[98], ARRIVE, vgg16-4
+DEBUG:root:Time[19910.62042 ms]: Job[99], ARRIVE, gpt-8
+DEBUG:root:Time[20288.83994 ms]: Job[100], ARRIVE, gpt-8
+DEBUG:root:Time[20394.31134 ms]: Job[101], ARRIVE, gpt-4
+DEBUG:root:Time[20489.10116 ms]: Job[102], ARRIVE, gpt-8
+DEBUG:root:Time[20610.16443 ms]: Job[103], ARRIVE, gpt-8
+DEBUG:root:Time[20719.06859 ms]: Job[104], ARRIVE, resnet50-4
+DEBUG:root:Time[21122.48980 ms]: Job[105], ARRIVE, gpt-8
+DEBUG:root:Time[21223.91656 ms]: Job[106], ARRIVE, vgg16-4
+DEBUG:root:Time[21324.56865 ms]: Job[107], ARRIVE, gpt-4
+DEBUG:root:Time[21441.08258 ms]: Job[108], ARRIVE, gpt-8
+DEBUG:root:Time[21560.81114 ms]: Job[109], ARRIVE, gpt-2
+DEBUG:root:Time[21796.34804 ms]: Job[110], ARRIVE, resnet50-1
+DEBUG:root:Time[21841.94434 ms]: Job[111], ARRIVE, mobilenet-2
+DEBUG:root:Time[22119.68011 ms]: Job[112], ARRIVE, gpt-4
+DEBUG:root:Time[22183.07143 ms]: Job[113], ARRIVE, vgg16-8
+DEBUG:root:Time[22895.48635 ms]: Job[114], ARRIVE, gpt-8
+DEBUG:root:Time[22926.32358 ms]: Job[115], ARRIVE, gpt-8
+DEBUG:root:Time[23282.52623 ms]: Job[116], ARRIVE, vgg16-8
+DEBUG:root:Time[23377.53411 ms]: Job[117], ARRIVE, mobilenet-1
+DEBUG:root:Time[23396.69525 ms]: Job[118], ARRIVE, gpt-8
+DEBUG:root:Time[23681.32407 ms]: Job[119], ARRIVE, gpt-2
+DEBUG:root:Time[0.00000 ms]: Job[ 0], START, G24-G25-G26-G27
+DEBUG:root:Time[493.99562 ms]: Job[ 1], START, G16-G17-G18-G19-G20-G21-G22-G23
+DEBUG:root:Time[975.27477 ms]: Job[ 2], START, G8-G9-G10-G11
+DEBUG:root:Time[1341.86104 ms]: Job[ 3], START, G0-G1-G2-G3
+DEBUG:root:Time[1349.78009 ms]: Job[ 4], START, G4-G5-G6-G7-G28-G29-G30-G31
+DEBUG:root:Time[2488.97607 ms]: Job[11], START, G12
+DEBUG:root:Time[4648.28000 ms]: Job[ 0], END, 4648.2800000000225

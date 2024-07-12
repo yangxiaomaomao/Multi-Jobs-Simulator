@@ -1,0 +1,360 @@
+DEBUG:root:Time[0.00000 ms]: Job[ 0], ARRIVE, gpt-8
+DEBUG:root:Time[246.11998 ms]: Job[ 1], ARRIVE, gpt-4
+DEBUG:root:Time[261.92899 ms]: Job[ 2], ARRIVE, resnet50-8
+DEBUG:root:Time[424.77042 ms]: Job[ 3], ARRIVE, mobilenet-1
+DEBUG:root:Time[427.04351 ms]: Job[ 4], ARRIVE, gpt-8
+DEBUG:root:Time[874.13827 ms]: Job[ 5], ARRIVE, gpt-8
+DEBUG:root:Time[964.50891 ms]: Job[ 6], ARRIVE, mobilenet-1
+DEBUG:root:Time[1011.92736 ms]: Job[ 7], ARRIVE, gpt-4
+DEBUG:root:Time[1046.16257 ms]: Job[ 8], ARRIVE, resnet50-2
+DEBUG:root:Time[1133.23717 ms]: Job[ 9], ARRIVE, gpt-2
+DEBUG:root:Time[1135.43279 ms]: Job[10], ARRIVE, gpt-8
+DEBUG:root:Time[1305.32136 ms]: Job[11], ARRIVE, gpt-8
+DEBUG:root:Time[1636.07009 ms]: Job[12], ARRIVE, mobilenet-1
+DEBUG:root:Time[1788.68018 ms]: Job[13], ARRIVE, vgg16-2
+DEBUG:root:Time[2056.84134 ms]: Job[14], ARRIVE, resnet50-1
+DEBUG:root:Time[2341.48332 ms]: Job[15], ARRIVE, resnet50-1
+DEBUG:root:Time[2392.99897 ms]: Job[16], ARRIVE, gpt-8
+DEBUG:root:Time[2687.25368 ms]: Job[17], ARRIVE, gpt-8
+DEBUG:root:Time[2741.21017 ms]: Job[18], ARRIVE, gpt-4
+DEBUG:root:Time[2765.39961 ms]: Job[19], ARRIVE, gpt-8
+DEBUG:root:Time[2969.22094 ms]: Job[20], ARRIVE, gpt-4
+DEBUG:root:Time[3073.16826 ms]: Job[21], ARRIVE, vgg16-8
+DEBUG:root:Time[3205.32252 ms]: Job[22], ARRIVE, mobilenet-8
+DEBUG:root:Time[3284.47129 ms]: Job[23], ARRIVE, mobilenet-4
+DEBUG:root:Time[3744.78612 ms]: Job[24], ARRIVE, gpt-8
+DEBUG:root:Time[3758.54608 ms]: Job[25], ARRIVE, gpt-8
+DEBUG:root:Time[4163.51925 ms]: Job[26], ARRIVE, gpt-2
+DEBUG:root:Time[4191.25971 ms]: Job[27], ARRIVE, resnet50-8
+DEBUG:root:Time[4286.68821 ms]: Job[28], ARRIVE, resnet50-8
+DEBUG:root:Time[4325.42687 ms]: Job[29], ARRIVE, mobilenet-8
+DEBUG:root:Time[4356.62688 ms]: Job[30], ARRIVE, mobilenet-8
+DEBUG:root:Time[4474.14527 ms]: Job[31], ARRIVE, vgg16-8
+DEBUG:root:Time[4837.16528 ms]: Job[32], ARRIVE, mobilenet-8
+DEBUG:root:Time[5255.25084 ms]: Job[33], ARRIVE, gpt-4
+DEBUG:root:Time[5549.01153 ms]: Job[34], ARRIVE, gpt-2
+DEBUG:root:Time[5661.53661 ms]: Job[35], ARRIVE, mobilenet-2
+DEBUG:root:Time[5941.06389 ms]: Job[36], ARRIVE, resnet50-8
+DEBUG:root:Time[6383.71374 ms]: Job[37], ARRIVE, gpt-8
+DEBUG:root:Time[6641.08580 ms]: Job[38], ARRIVE, mobilenet-1
+DEBUG:root:Time[6741.69375 ms]: Job[39], ARRIVE, gpt-8
+DEBUG:root:Time[6812.36982 ms]: Job[40], ARRIVE, mobilenet-8
+DEBUG:root:Time[6831.04976 ms]: Job[41], ARRIVE, gpt-2
+DEBUG:root:Time[7511.09880 ms]: Job[42], ARRIVE, vgg16-8
+DEBUG:root:Time[7537.71057 ms]: Job[43], ARRIVE, gpt-8
+DEBUG:root:Time[7590.73450 ms]: Job[44], ARRIVE, gpt-8
+DEBUG:root:Time[7785.90927 ms]: Job[45], ARRIVE, gpt-8
+DEBUG:root:Time[7955.44226 ms]: Job[46], ARRIVE, gpt-4
+DEBUG:root:Time[7996.55569 ms]: Job[47], ARRIVE, mobilenet-8
+DEBUG:root:Time[8259.59827 ms]: Job[48], ARRIVE, gpt-8
+DEBUG:root:Time[8376.21965 ms]: Job[49], ARRIVE, gpt-2
+DEBUG:root:Time[8389.53307 ms]: Job[50], ARRIVE, gpt-4
+DEBUG:root:Time[8395.18106 ms]: Job[51], ARRIVE, gpt-8
+DEBUG:root:Time[8530.87822 ms]: Job[52], ARRIVE, gpt-8
+DEBUG:root:Time[8557.22515 ms]: Job[53], ARRIVE, vgg16-4
+DEBUG:root:Time[8602.08499 ms]: Job[54], ARRIVE, mobilenet-8
+DEBUG:root:Time[8607.61961 ms]: Job[55], ARRIVE, gpt-4
+DEBUG:root:Time[8780.98988 ms]: Job[56], ARRIVE, gpt-8
+DEBUG:root:Time[9094.14115 ms]: Job[57], ARRIVE, vgg16-8
+DEBUG:root:Time[9130.35197 ms]: Job[58], ARRIVE, mobilenet-2
+DEBUG:root:Time[9397.71925 ms]: Job[59], ARRIVE, mobilenet-8
+DEBUG:root:Time[9410.46645 ms]: Job[60], ARRIVE, mobilenet-8
+DEBUG:root:Time[9574.70453 ms]: Job[61], ARRIVE, resnet50-1
+DEBUG:root:Time[9863.45552 ms]: Job[62], ARRIVE, gpt-4
+DEBUG:root:Time[9919.45881 ms]: Job[63], ARRIVE, resnet50-1
+DEBUG:root:Time[10024.38213 ms]: Job[64], ARRIVE, gpt-8
+DEBUG:root:Time[10055.45051 ms]: Job[65], ARRIVE, mobilenet-8
+DEBUG:root:Time[10552.20173 ms]: Job[66], ARRIVE, gpt-8
+DEBUG:root:Time[10559.02092 ms]: Job[67], ARRIVE, mobilenet-8
+DEBUG:root:Time[10868.83051 ms]: Job[68], ARRIVE, gpt-8
+DEBUG:root:Time[11166.01895 ms]: Job[69], ARRIVE, gpt-8
+DEBUG:root:Time[11694.20385 ms]: Job[70], ARRIVE, resnet50-1
+DEBUG:root:Time[11709.71218 ms]: Job[71], ARRIVE, mobilenet-8
+DEBUG:root:Time[12246.81519 ms]: Job[72], ARRIVE, vgg16-8
+DEBUG:root:Time[12266.13893 ms]: Job[73], ARRIVE, gpt-8
+DEBUG:root:Time[12273.52865 ms]: Job[74], ARRIVE, gpt-4
+DEBUG:root:Time[12495.44472 ms]: Job[75], ARRIVE, gpt-2
+DEBUG:root:Time[12821.31031 ms]: Job[76], ARRIVE, resnet50-8
+DEBUG:root:Time[13267.49663 ms]: Job[77], ARRIVE, gpt-4
+DEBUG:root:Time[13429.03054 ms]: Job[78], ARRIVE, resnet50-1
+DEBUG:root:Time[13494.44417 ms]: Job[79], ARRIVE, mobilenet-4
+DEBUG:root:Time[13597.83279 ms]: Job[80], ARRIVE, gpt-8
+DEBUG:root:Time[13861.10578 ms]: Job[81], ARRIVE, gpt-4
+DEBUG:root:Time[14326.06249 ms]: Job[82], ARRIVE, gpt-8
+DEBUG:root:Time[14355.13674 ms]: Job[83], ARRIVE, mobilenet-8
+DEBUG:root:Time[14511.80650 ms]: Job[84], ARRIVE, gpt-8
+DEBUG:root:Time[14515.64201 ms]: Job[85], ARRIVE, mobilenet-8
+DEBUG:root:Time[14528.96808 ms]: Job[86], ARRIVE, gpt-8
+DEBUG:root:Time[14848.59015 ms]: Job[87], ARRIVE, gpt-4
+DEBUG:root:Time[15426.12213 ms]: Job[88], ARRIVE, resnet50-2
+DEBUG:root:Time[15787.91695 ms]: Job[89], ARRIVE, mobilenet-2
+DEBUG:root:Time[15941.36268 ms]: Job[90], ARRIVE, gpt-8
+DEBUG:root:Time[15982.54442 ms]: Job[91], ARRIVE, gpt-8
+DEBUG:root:Time[16094.81180 ms]: Job[92], ARRIVE, gpt-8
+DEBUG:root:Time[16672.13716 ms]: Job[93], ARRIVE, gpt-8
+DEBUG:root:Time[16705.89980 ms]: Job[94], ARRIVE, mobilenet-4
+DEBUG:root:Time[16953.98240 ms]: Job[95], ARRIVE, gpt-4
+DEBUG:root:Time[17108.50188 ms]: Job[96], ARRIVE, mobilenet-8
+DEBUG:root:Time[17251.87352 ms]: Job[97], ARRIVE, vgg16-2
+DEBUG:root:Time[17351.99843 ms]: Job[98], ARRIVE, mobilenet-2
+DEBUG:root:Time[17404.80170 ms]: Job[99], ARRIVE, gpt-4
+DEBUG:root:Time[17684.79992 ms]: Job[100], ARRIVE, gpt-8
+DEBUG:root:Time[18115.65388 ms]: Job[101], ARRIVE, vgg16-8
+DEBUG:root:Time[18197.23708 ms]: Job[102], ARRIVE, gpt-4
+DEBUG:root:Time[18576.49230 ms]: Job[103], ARRIVE, gpt-8
+DEBUG:root:Time[18742.76361 ms]: Job[104], ARRIVE, vgg16-1
+DEBUG:root:Time[18754.45722 ms]: Job[105], ARRIVE, mobilenet-8
+DEBUG:root:Time[18866.99092 ms]: Job[106], ARRIVE, mobilenet-1
+DEBUG:root:Time[19102.37715 ms]: Job[107], ARRIVE, gpt-2
+DEBUG:root:Time[19369.50401 ms]: Job[108], ARRIVE, mobilenet-8
+DEBUG:root:Time[19476.15431 ms]: Job[109], ARRIVE, mobilenet-1
+DEBUG:root:Time[19826.16990 ms]: Job[110], ARRIVE, vgg16-1
+DEBUG:root:Time[20705.26997 ms]: Job[111], ARRIVE, mobilenet-8
+DEBUG:root:Time[21151.24910 ms]: Job[112], ARRIVE, resnet50-8
+DEBUG:root:Time[21238.03493 ms]: Job[113], ARRIVE, mobilenet-4
+DEBUG:root:Time[21724.36208 ms]: Job[114], ARRIVE, gpt-4
+DEBUG:root:Time[21789.22586 ms]: Job[115], ARRIVE, gpt-8
+DEBUG:root:Time[21960.85456 ms]: Job[116], ARRIVE, gpt-8
+DEBUG:root:Time[22057.65800 ms]: Job[117], ARRIVE, mobilenet-8
+DEBUG:root:Time[22238.29698 ms]: Job[118], ARRIVE, gpt-8
+DEBUG:root:Time[22374.33218 ms]: Job[119], ARRIVE, gpt-8
+DEBUG:root:Time[0.00000 ms]: Job[ 0], START, G0-G1-G2-G3-G4-G5-G6-G7
+DEBUG:root:Time[246.11998 ms]: Job[ 1], START, G8-G9-G10-G11
+DEBUG:root:Time[261.92899 ms]: Job[ 2], START, G12-G13-G14-G15-G16-G17-G18-G19
+DEBUG:root:Time[424.77042 ms]: Job[ 3], START, G20
+DEBUG:root:Time[427.04351 ms]: Job[ 4], START, G21-G22-G23-G24-G25-G26-G27-G28
+DEBUG:root:Time[964.50891 ms]: Job[ 6], START, G29
+DEBUG:root:Time[1046.16257 ms]: Job[ 8], START, G30-G31
+DEBUG:root:Time[2724.27042 ms]: Job[ 3], END, 2299.5
+DEBUG:root:Time[2698.67157 ms]: Job[12], START, G20
+DEBUG:root:Time[3395.40891 ms]: Job[ 6], END, 2430.8999999999996
+DEBUG:root:Time[4174.09057 ms]: Job[ 8], END, 3127.9279999999853
+DEBUG:root:Time[5260.97157 ms]: Job[12], END, 3624.90148238668
+DEBUG:root:Time[7772.52899 ms]: Job[ 2], END, 7510.6
+DEBUG:root:Time[7774.15359 ms]: Job[23], START, G12-G13-G14-G15
+DEBUG:root:Time[8969.01145 ms]: Job[23], END, 5684.540164193832
+DEBUG:root:Time[13494.44417 ms]: Job[79], START, G12-G13-G14-G15
+DEBUG:root:Time[14496.87782 ms]: Job[79], END, 1002.4336471585557
+DEBUG:root:Time[18372.00000 ms]: Job[ 0], END, 18372.000000000022
+DEBUG:root:Time[18353.64940 ms]: Job[40], START, G0-G1-G2-G3-G4-G5-G6-G7
+DEBUG:root:Time[18847.79784 ms]: Job[ 4], END, 18420.754333333243
+DEBUG:root:Time[18819.89331 ms]: Job[96], START, G16-G17-G18-G19-G20-G21-G22-G23
+DEBUG:root:Time[18819.89331 ms]: Job[32], START, G24-G25-G26-G27-G28-G29-G30-G31
+DEBUG:root:Time[19571.64940 ms]: Job[40], END, 12759.279587132354
+DEBUG:root:Time[19571.89331 ms]: Job[94], START, G12-G13-G14-G15
+DEBUG:root:Time[19571.89331 ms]: Job[71], START, G0-G1-G2-G3-G4-G5-G6-G7
+DEBUG:root:Time[20037.89331 ms]: Job[96], END, 2929.391425780006
+DEBUG:root:Time[20037.89331 ms]: Job[22], START, G16-G17-G18-G19-G20-G21-G22-G23
+DEBUG:root:Time[20079.89331 ms]: Job[32], END, 15242.728030945695
+DEBUG:root:Time[20079.89331 ms]: Job[29], START, G24-G25-G26-G27-G28-G29-G30-G31
+DEBUG:root:Time[20831.89331 ms]: Job[71], END, 9122.181132213449
+DEBUG:root:Time[20832.12629 ms]: Job[54], START, G0-G1-G2-G3-G4-G5-G6-G7
+DEBUG:root:Time[20942.36326 ms]: Job[94], END, 4236.463462657604
+DEBUG:root:Time[20946.12629 ms]: Job[104], START, G12
+DEBUG:root:Time[21339.89331 ms]: Job[22], END, 18134.57079145962
+DEBUG:root:Time[21345.36629 ms]: Job[113], START, G16-G17-G18-G19
+DEBUG:root:Time[21381.89331 ms]: Job[29], END, 17056.46643890829
+DEBUG:root:Time[21389.72629 ms]: Job[59], START, G24-G25-G26-G27-G28-G29-G30-G31
+DEBUG:root:Time[21572.92664 ms]: Job[ 1], END, 21326.806666666664
+DEBUG:root:Time[22134.12629 ms]: Job[54], END, 13532.041299822029
+DEBUG:root:Time[22134.52629 ms]: Job[117], START, G0-G1-G2-G3-G4-G5-G6-G7
+DEBUG:root:Time[22254.74629 ms]: Job[104], END, 3511.982675491505
+DEBUG:root:Time[22232.79092 ms]: Job[105], START, G8-G9-G10-G11-G12-G13-G14-G15
+DEBUG:root:Time[22331.72318 ms]: Job[113], END, 1093.6882487226612
+DEBUG:root:Time[22332.52629 ms]: Job[65], START, G16-G17-G18-G19-G20-G21-G22-G23
+DEBUG:root:Time[22733.72629 ms]: Job[59], END, 13336.007040706601
+DEBUG:root:Time[22736.79092 ms]: Job[67], START, G24-G25-G26-G27-G28-G29-G30-G31
+DEBUG:root:Time[23394.52629 ms]: Job[117], END, 1336.8682897949693
+DEBUG:root:Time[23396.79092 ms]: Job[85], START, G0-G1-G2-G3-G4-G5-G6-G7
+DEBUG:root:Time[23576.79092 ms]: Job[105], END, 4822.333702602722
+DEBUG:root:Time[23580.52629 ms]: Job[60], START, G8-G9-G10-G11-G12-G13-G14-G15
+DEBUG:root:Time[23718.52629 ms]: Job[65], END, 13663.075779410661
+DEBUG:root:Time[23720.79092 ms]: Job[111], START, G16-G17-G18-G19-G20-G21-G22-G23
+DEBUG:root:Time[24122.79092 ms]: Job[67], END, 13563.770000728005
+DEBUG:root:Time[24123.32629 ms]: Job[47], START, G24-G25-G26-G27-G28-G29-G30-G31
+DEBUG:root:Time[24782.79092 ms]: Job[85], END, 10267.148913065812
+DEBUG:root:Time[24783.32629 ms]: Job[110], START, G0
+DEBUG:root:Time[25008.52629 ms]: Job[60], END, 15598.05983419124
+DEBUG:root:Time[25010.79092 ms]: Job[30], START, G8-G9-G10-G11-G12-G13-G14-G15
+DEBUG:root:Time[25148.79092 ms]: Job[111], END, 4443.520948144636
+DEBUG:root:Time[25161.32629 ms]: Job[83], START, G16-G17-G18-G19-G20-G21-G22-G23
+DEBUG:root:Time[25635.32629 ms]: Job[47], END, 17638.77059738538
+DEBUG:root:Time[25635.99092 ms]: Job[88], START, G1-G2
+DEBUG:root:Time[25635.99092 ms]: Job[108], START, G24-G25-G26-G27-G28-G29-G30-G31
+DEBUG:root:Time[25635.99092 ms]: Job[35], START, G3-G4
+DEBUG:root:Time[26358.10629 ms]: Job[110], END, 6531.936383975433
+DEBUG:root:Time[26606.79092 ms]: Job[30], END, 22250.164041693133
+DEBUG:root:Time[26606.06517 ms]: Job[115], START, G0-G5-G6-G7-G8-G9-G10-G11
+DEBUG:root:Time[26606.06517 ms]: Job[106], START, G12
+DEBUG:root:Time[26606.06517 ms]: Job[78], START, G13
+DEBUG:root:Time[26606.06517 ms]: Job[89], START, G14-G15
+DEBUG:root:Time[26757.32629 ms]: Job[83], END, 12402.18954770173
+DEBUG:root:Time[26757.99092 ms]: Job[38], START, G16
+DEBUG:root:Time[26757.99092 ms]: Job[58], START, G17-G18
+DEBUG:root:Time[26757.99092 ms]: Job[109], START, G19
+DEBUG:root:Time[26757.99092 ms]: Job[98], START, G20-G21
+DEBUG:root:Time[26757.99092 ms]: Job[14], START, G22
+DEBUG:root:Time[26757.99092 ms]: Job[15], START, G23
+DEBUG:root:Time[27231.99092 ms]: Job[108], END, 7862.486910787513
+DEBUG:root:Time[27232.37059 ms]: Job[63], START, G24
+DEBUG:root:Time[27232.37059 ms]: Job[61], START, G25
+DEBUG:root:Time[27232.37059 ms]: Job[70], START, G26
+DEBUG:root:Time[27618.63525 ms]: Job[88], END, 12192.513122062892
+DEBUG:root:Time[27683.06767 ms]: Job[35], END, 22021.53106217474
+DEBUG:root:Time[27685.94059 ms]: Job[103], START, G1-G2-G3-G4-G27-G28-G29-G30
+DEBUG:root:Time[28600.17684 ms]: Job[115], END, 6810.95097150706
+DEBUG:root:Time[28599.04467 ms]: Job[ 7], START, G5-G6-G7-G8
+DEBUG:root:Time[28599.04467 ms]: Job[34], START, G31-G0
+DEBUG:root:Time[28741.31517 ms]: Job[106], END, 9874.324252823444
+DEBUG:root:Time[28711.83092 ms]: Job[50], START, G9-G10-G11-G12
+DEBUG:root:Time[28769.24517 ms]: Job[78], END, 15340.2146284799
+DEBUG:root:Time[28798.20592 ms]: Job[89], END, 13010.288965047876
+DEBUG:root:Time[29090.34092 ms]: Job[38], END, 22449.255120201837
+DEBUG:root:Time[29057.71856 ms]: Job[114], START, G16-G13-G14-G15
+DEBUG:root:Time[29254.59092 ms]: Job[109], END, 9778.43661372524
+DEBUG:root:Time[29278.11950 ms]: Job[58], END, 20147.76753128971
+DEBUG:root:Time[29279.16492 ms]: Job[49], START, G17-G18
+DEBUG:root:Time[29374.74092 ms]: Job[14], END, 27317.899580442303
+DEBUG:root:Time[29409.63092 ms]: Job[15], END, 27068.147595097336
+DEBUG:root:Time[29376.84575 ms]: Job[98], END, 12024.847318191234
+DEBUG:root:Time[29378.25892 ms]: Job[62], START, G19-G20-G21-G22
+DEBUG:root:Time[29884.01059 ms]: Job[63], END, 19964.5517775186
+DEBUG:root:Time[29918.90059 ms]: Job[61], END, 20344.196050676404
+DEBUG:root:Time[29918.90059 ms]: Job[70], END, 18224.69673292725
+DEBUG:root:Time[29884.50892 ms]: Job[77], START, G23-G24-G25-G26
+DEBUG:root:Time[30626.17559 ms]: Job[103], END, 12049.683281531117
+DEBUG:root:Time[30625.68388 ms]: Job[33], START, G1-G2-G3-G4
+DEBUG:root:Time[30625.68388 ms]: Job[46], START, G27-G28-G29-G30
+DEBUG:root:Time[32378.12517 ms]: Job[ 7], END, 31366.197806264357
+DEBUG:root:Time[32364.78992 ms]: Job[55], START, G8-G5-G6-G7
+DEBUG:root:Time[32465.61967 ms]: Job[34], END, 26916.60813731937
+DEBUG:root:Time[33910.40106 ms]: Job[114], END, 12186.038972461436
+DEBUG:root:Time[33912.36988 ms]: Job[13], START, G13-G14
+DEBUG:root:Time[33912.36988 ms]: Job[74], START, G0-G15-G16-G31
+DEBUG:root:Time[34076.90159 ms]: Job[49], END, 25700.681933107888
+DEBUG:root:Time[34265.31959 ms]: Job[50], END, 25875.78651468443
+DEBUG:root:Time[34506.20559 ms]: Job[62], END, 24642.750065789645
+DEBUG:root:Time[34509.56988 ms]: Job[84], START, G9-G10-G11-G12-G17-G18-G19-G20
+DEBUG:root:Time[35206.08442 ms]: Job[77], END, 21938.587786696462
+DEBUG:root:Time[35199.45021 ms]: Job[87], START, G21-G22-G23-G24
+DEBUG:root:Time[37182.58588 ms]: Job[46], END, 29227.143611374093
+DEBUG:root:Time[37623.22654 ms]: Job[33], END, 32367.975698796643
+DEBUG:root:Time[37626.63654 ms]: Job[107], START, G29-G30
+DEBUG:root:Time[37626.63654 ms]: Job[27], START, G1-G2-G3-G4-G25-G26-G27-G28
+DEBUG:root:Time[38668.55792 ms]: Job[55], END, 30060.93830877485
+DEBUG:root:Time[38656.17417 ms]: Job[97], START, G5-G6
+DEBUG:root:Time[39035.65907 ms]: Job[74], END, 26762.13041874229
+DEBUG:root:Time[40591.27988 ms]: Job[84], END, 26079.473374408844
+DEBUG:root:Time[40585.83654 ms]: Job[76], START, G0-G7-G16-G17-G18-G19-G20-G31
+DEBUG:root:Time[41690.85121 ms]: Job[87], END, 26842.261054827897
+DEBUG:root:Time[41679.88654 ms]: Job[28], START, G8-G9-G10-G11-G21-G22-G23-G24
+DEBUG:root:Time[41679.88654 ms]: Job[26], START, G12-G15
+DEBUG:root:Time[42410.36988 ms]: Job[13], END, 40621.689694333174
+DEBUG:root:Time[44336.48654 ms]: Job[27], END, 40145.22682919147
+DEBUG:root:Time[44335.61221 ms]: Job[112], START, G1-G2-G3-G4-G13-G14-G25-G26
+DEBUG:root:Time[45970.31313 ms]: Job[107], END, 26867.93597853453
+DEBUG:root:Time[46970.59904 ms]: Job[76], END, 34149.288732003144
+DEBUG:root:Time[46967.21221 ms]: Job[75], START, G30-G31
+DEBUG:root:Time[46967.21221 ms]: Job[36], START, G0-G7-G16-G17-G18-G19-G20-G27
+DEBUG:root:Time[46967.21221 ms]: Job[41], START, G28-G29
+DEBUG:root:Time[47688.63654 ms]: Job[28], END, 43401.94833312089
+DEBUG:root:Time[47689.61704 ms]: Job[ 9], START, G24-G21
+DEBUG:root:Time[50370.57417 ms]: Job[97], END, 33118.70064418611
+DEBUG:root:Time[50363.42471 ms]: Job[52], START, G5-G6-G22-G23-G8-G9-G10-G11
+DEBUG:root:Time[51335.14213 ms]: Job[26], END, 47171.62287474178
+DEBUG:root:Time[52593.33721 ms]: Job[112], END, 31442.08810529097
+DEBUG:root:Time[52593.49151 ms]: Job[18], START, G3-G4-G12-G13
+DEBUG:root:Time[52593.49151 ms]: Job[99], START, G25-G26-G1-G2
+DEBUG:root:Time[54178.46221 ms]: Job[36], END, 48237.39832239216
+DEBUG:root:Time[54175.94938 ms]: Job[10], START, G27-G0-G7-G14-G15-G16-G17-G18
+DEBUG:root:Time[60184.43611 ms]: Job[ 9], END, 59051.19894013052
+DEBUG:root:Time[60265.08629 ms]: Job[41], END, 53434.03652839162
+DEBUG:root:Time[61076.32304 ms]: Job[52], END, 52545.44482548505
+DEBUG:root:Time[61121.01104 ms]: Job[53], START, G8-G9-G10-G11
+DEBUG:root:Time[61121.01104 ms]: Job[81], START, G5-G6-G24-G28
+DEBUG:root:Time[61483.40421 ms]: Job[75], END, 48987.95948433111
+DEBUG:root:Time[61457.28944 ms]: Job[82], START, G29-G30-G31-G19-G20-G21-G22-G23
+DEBUG:root:Time[65250.70854 ms]: Job[10], END, 64115.27575462068
+DEBUG:root:Time[65232.47818 ms]: Job[20], START, G15-G16-G17-G18
+DEBUG:root:Time[65232.47818 ms]: Job[102], START, G27-G0-G7-G14
+DEBUG:root:Time[71278.74151 ms]: Job[99], END, 53873.93981195195
+DEBUG:root:Time[71237.95438 ms]: Job[95], START, G1-G2-G25-G26
+DEBUG:root:Time[71283.23151 ms]: Job[18], END, 68542.0213367354
+DEBUG:root:Time[81674.49444 ms]: Job[82], END, 67348.43195178844
+DEBUG:root:Time[81661.34771 ms]: Job[43], START, G3-G4-G12-G13-G29-G30-G31-G19
+DEBUG:root:Time[83823.83580 ms]: Job[53], END, 75266.61065339601
+DEBUG:root:Time[83793.22646 ms]: Job[11], START, G8-G9-G10-G11-G20-G21-G22-G23
+DEBUG:root:Time[87624.05771 ms]: Job[81], END, 73762.9519251282
+DEBUG:root:Time[90407.06818 ms]: Job[102], END, 72209.8310914365
+DEBUG:root:Time[90388.43263 ms]: Job[56], START, G14-G24-G27-G28-G0-G5-G6-G7
+DEBUG:root:Time[93533.99818 ms]: Job[20], END, 90564.77723907649
+DEBUG:root:Time[102609.80771 ms]: Job[95], END, 85655.82530876226
+DEBUG:root:Time[102603.96821 ms]: Job[17], START, G15-G1-G2-G25-G26-G16-G17-G18
+DEBUG:root:Time[103161.83038 ms]: Job[43], END, 95624.11980432307
+DEBUG:root:Time[103109.06629 ms]: Job[51], START, G19-G3-G4-G12-G13-G29-G30-G31
+DEBUG:root:Time[107017.29563 ms]: Job[11], END, 105711.97426440762
+DEBUG:root:Time[107026.01796 ms]: Job[93], START, G8-G9-G10-G11-G20-G21-G22-G23
+DEBUG:root:Time[115623.74171 ms]: Job[56], END, 106842.75182651653
+DEBUG:root:Time[115578.74800 ms]: Job[37], START, G14-G24-G27-G28-G0-G5-G6-G7
+DEBUG:root:Time[123220.85179 ms]: Job[17], END, 120533.59811641418
+DEBUG:root:Time[123186.11960 ms]: Job[48], START, G15-G1-G2-G25-G26-G16-G17-G18
+DEBUG:root:Time[127372.69279 ms]: Job[51], END, 118977.51173444108
+DEBUG:root:Time[127308.25537 ms]: Job[92], START, G19-G3-G4-G12-G13-G29-G30-G31
+DEBUG:root:Time[135018.51263 ms]: Job[93], END, 118346.37546588131
+DEBUG:root:Time[144408.10127 ms]: Job[48], END, 136148.50299529973
+DEBUG:root:Time[145007.17575 ms]: Job[37], END, 138623.4620069745
+DEBUG:root:Time[148831.18899 ms]: Job[92], END, 132736.37719157754
+DEBUG:root:Time[    inf ms]: Job[ 5], START, G8-G9-G10-G11-G12-G13-G14-G15
+DEBUG:root:Time[    inf ms]: Job[80], START, G24-G25-G26-G27-G28-G29-G30-G31
+DEBUG:root:Time[    inf ms]: Job[16], START, G16-G17-G18-G19-G20-G21-G22-G23
+DEBUG:root:Time[    inf ms]: Job[31], START, G0-G1-G2-G3-G4-G5-G6-G7
+DEBUG:root:Time[    inf ms]: Job[ 5], END, inf
+DEBUG:root:Time[    inf ms]: Job[91], START, G8-G9-G10-G11-G12-G13-G14-G15
+DEBUG:root:Time[    inf ms]: Job[16], END, inf
+DEBUG:root:Time[    inf ms]: Job[80], END, inf
+DEBUG:root:Time[    inf ms]: Job[45], START, G16-G17-G18-G19-G20-G21-G22-G23
+DEBUG:root:Time[    inf ms]: Job[116], START, G24-G25-G26-G27-G28-G29-G30-G31
+DEBUG:root:Time[    inf ms]: Job[31], END, inf
+DEBUG:root:Time[    inf ms]: Job[119], START, G0-G1-G2-G3-G4-G5-G6-G7
+DEBUG:root:Time[    inf ms]: Job[91], END, inf
+DEBUG:root:Time[    inf ms]: Job[42], START, G8-G9-G10-G11-G12-G13-G14-G15
+DEBUG:root:Time[    inf ms]: Job[45], END, inf
+DEBUG:root:Time[    inf ms]: Job[116], END, inf
+DEBUG:root:Time[    inf ms]: Job[101], START, G24-G25-G26-G27-G28-G29-G30-G31
+DEBUG:root:Time[    inf ms]: Job[57], START, G16-G17-G18-G19-G20-G21-G22-G23
+DEBUG:root:Time[    inf ms]: Job[119], END, inf
+DEBUG:root:Time[    inf ms]: Job[44], START, G0-G1-G2-G3-G4-G5-G6-G7
+DEBUG:root:Time[    inf ms]: Job[42], END, inf
+DEBUG:root:Time[    inf ms]: Job[68], START, G8-G9-G10-G11-G12-G13-G14-G15
+DEBUG:root:Time[    inf ms]: Job[44], END, inf
+DEBUG:root:Time[    inf ms]: Job[73], START, G0-G1-G2-G3-G4-G5-G6-G7
+DEBUG:root:Time[    inf ms]: Job[101], END, inf
+DEBUG:root:Time[    inf ms]: Job[86], START, G24-G25-G26-G27-G28-G29-G30-G31
+DEBUG:root:Time[    inf ms]: Job[57], END, inf
+DEBUG:root:Time[    inf ms]: Job[64], START, G16-G17-G18-G19-G20-G21-G22-G23
+DEBUG:root:Time[    inf ms]: Job[68], END, inf
+DEBUG:root:Time[    inf ms]: Job[25], START, G8-G9-G10-G11-G12-G13-G14-G15
+DEBUG:root:Time[    inf ms]: Job[73], END, inf
+DEBUG:root:Time[    inf ms]: Job[100], START, G0-G1-G2-G3-G4-G5-G6-G7
+DEBUG:root:Time[    inf ms]: Job[86], END, inf
+DEBUG:root:Time[    inf ms]: Job[72], START, G24-G25-G26-G27-G28-G29-G30-G31
+DEBUG:root:Time[    inf ms]: Job[64], END, inf
+DEBUG:root:Time[    inf ms]: Job[24], START, G16-G17-G18-G19-G20-G21-G22-G23
+DEBUG:root:Time[    inf ms]: Job[25], END, inf
+DEBUG:root:Time[    inf ms]: Job[90], START, G8-G9-G10-G11-G12-G13-G14-G15
+DEBUG:root:Time[    inf ms]: Job[100], END, inf
+DEBUG:root:Time[    inf ms]: Job[21], START, G0-G1-G2-G3-G4-G5-G6-G7
+DEBUG:root:Time[    inf ms]: Job[24], END, inf
+DEBUG:root:Time[    inf ms]: Job[19], START, G16-G17-G18-G19-G20-G21-G22-G23
+DEBUG:root:Time[    inf ms]: Job[90], END, inf
+DEBUG:root:Time[    inf ms]: Job[66], START, G8-G9-G10-G11-G12-G13-G14-G15
+DEBUG:root:Time[    inf ms]: Job[72], END, inf
+DEBUG:root:Time[    inf ms]: Job[39], START, G24-G25-G26-G27-G28-G29-G30-G31
+DEBUG:root:Time[    inf ms]: Job[19], END, inf
+DEBUG:root:Time[    inf ms]: Job[118], START, G16-G17-G18-G19-G20-G21-G22-G23
+DEBUG:root:Time[    inf ms]: Job[21], END, inf
+DEBUG:root:Time[    inf ms]: Job[69], START, G0-G1-G2-G3-G4-G5-G6-G7
+DEBUG:root:Time[    inf ms]: Job[66], END, inf
+DEBUG:root:Time[    inf ms]: Job[39], END, inf
+DEBUG:root:Time[    inf ms]: Job[118], END, inf
+DEBUG:root:Time[    inf ms]: Job[69], END, inf
