@@ -249,7 +249,7 @@ class Job():
                 
                 self.status = "OVER"
                 self.cluster.set_gpu_free(self.gpus_use)
-                print(self.job_id, self.write_iter_time(self.recorder))
+                self.write_iter_time(self.recorder)
                 self.scheduler.sched_and_place(self)
                 
                 break

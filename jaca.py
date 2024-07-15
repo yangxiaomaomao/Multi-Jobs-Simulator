@@ -23,6 +23,7 @@ class Jaca():
         if len(candi) == 1:
             return 0.000001
         demand_matrix = job.param_mat
+        #print(demand_matrix)
         worker_num = len(job.param_mat)
         assert len(candi) == worker_num
         global_ts = self.gv.get_global_time()
@@ -31,7 +32,7 @@ class Jaca():
         job_use_node      = list()
         #print(machine_load_dict, machine_cap_dict)
         #sys.exit(0)
-        print(demand_matrix)
+        #print(demand_matrix)
         for i in range(worker_num):
             for j in range(worker_num):
                 demand = demand_matrix[i][j]
@@ -62,7 +63,7 @@ class Jaca():
                 load_factor[int(node_name[1:]) * 2 + 1] = (machine_load_dict[int(node_name[1:])]["nic_util"])
         # print(load_factor,"ll")
         # print(job_dep_node)
-        print(load_factor,"ooo")
+        #print(load_factor,"ooo")
         for node_id, load in load_factor.items():
             dep = job_dep_node[node_id] if node_id in list(job_dep_node.keys()) else 0
 
@@ -71,7 +72,7 @@ class Jaca():
         #print(load_factor)
         #print(load_factor)
         #print(candi,load_factor,job_use_node)
-        print(load_factor,"ll")
+        #print(load_factor,"ll")
         # minmax, 在所有摆放中，我们只关注最大负载的节点
         return max(load_factor.values())
     
@@ -83,12 +84,13 @@ class Jaca():
         free_gpu = self.cluster.free_gpu_in_cluster()
         
         candidate_list = self.cluster.get_candidate_place(node_info, label_counter, job)
-        candidate_list = [['G2', 'G3', 'G4', 'G10', 'G11', 'G12', 'G20', 'G21']]
+        #candidate_list = [['G2', 'G3', 'G4', 'G10', 'G11', 'G12', 'G20', 'G21']]
         best_placement = list()# ["G0", "G1"] like this
         jaca_min_score = float("inf")
         
         candi_counter = 0
-        
+        if job.job_id == 3:
+            print(job.worker_num,"pppp",candidate_list)
         if job.is_vision_job():
             for candi in candidate_list:#permutations(free_gpu, worker_num):#[["G0","G1","G5","G4"]]:#
                 candi_counter += 1
@@ -109,8 +111,8 @@ class Jaca():
                 if jaca_score < jaca_min_score:
                     jaca_min_score = jaca_score
                     best_placement = candi
-            print(jaca_min_score)
-            sys.exit(0)
+            #print(jaca_min_score)
+            #sys.exit(0)
 
         # if a job is pend too long(longer than 0.8*ideal time), 
         # it will have more chance to sched
@@ -141,11 +143,10 @@ class Jaca():
         free_gpu = self.cluster.free_gpu_in_cluster()
         node_info, label_counter = self.cluster.classfying_workers(self.group_thresh)
         job_dep_node = self.gv.get_job_dependence()
+        #print(job_dep_node)
         #print(job_dep_node,"ppppppppppppppppppppppppppppppppppppppppp")
         # print(node_info, label_counter)
         #sys.exit(0)
-        # TODO: get each job's(running) dependence on each node,
-        # the dependence can be used for all jobs' computing jaca_score phase
         for job in self.pending_jobs:
             if job.worker_num <= len(free_gpu):
                 self.compute_single_job_score(job, node_info, label_counter, job_dep_node)

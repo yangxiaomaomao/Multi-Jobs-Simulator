@@ -50,7 +50,9 @@ class Scheduler():
             job_id = job.job_id
 
             # sched
-            if self.sched_name == "fifo":
+            if self.sched_name == "baseline":
+                ret_jobs_list.sort(key=lambda job: job.arrive_ts)
+            elif self.sched_name == "fifo":
                 ret_jobs_list.sort(key=lambda job: job.arrive_ts)
             elif self.sched_name == "smallest":
                 ret_jobs_list.sort(key=lambda job: job.worker_num)
@@ -65,42 +67,40 @@ class Scheduler():
                 jacar = Jaca(self.gv, self.cluster, ret_jobs_list)
                 
                 jacar.compute_all_jobs_score()
+                
                 ret_jobs_list.sort(key=lambda job: job.jaca_score)
+                # for job in ret_jobs_list:
+                #     print(job.job_id,job.jaca_placement)
                 
             else:
                 print("Don't support the scheduler")
                 sys.exit(0)
-                
+            
             selected_job = ret_jobs_list[0]
+            print(selected_job.jaca_placement,"dfghjk")
+            
             if selected_job.gpus_use:
                 continue
             if self.placer_name == "consolidate":
                 placement = self.cluster.consolidate_placement(selected_job)
-                # print(job.label,"ooooooooo")
-                # if job.label == "vgg16-2":
-                #     placement = ["G0","G1"]
-                # elif job.label == "resnet50-2":
-                #     placement = ["G2","G4"]
-                # elif job.label == "vgg16-4":
-                #     placement = ["G2","G3","G4","G5"]
-                # elif job.label == "resnet50-4":
-                #     placement = ["G2","G3","G4","G5"]
-                # elif job.label == "gpt-4":
-                #     placement = ["G0","G1","G4","G5"]
-                # elif job.job_id == 0:
-                #     placement = ["G0","G1"]
-                # elif job.job_id == 2:
-                #     placement = ["G2","G4"]
-                #placement = ["G0","G1"]
             elif self.placer_name == "load_balance":
                 placement = self.cluster.load_balance_placement(selected_job)
             elif self.placer_name == "gandiva":
                 placement = self.cluster.gandiva_placement(selected_job)
             elif self.placer_name == "tiresias":
                 placement = self.cluster.tiresias_placement(selected_job)
+            elif self.placer_name == "baseline":
+                placement = self.cluster.baseline_placement(selected_job)
+                print(placement)
             elif "jaca" in self.placer_name:
-                placement = selected_job.jaca_placement
-            
+                if selected_job.job_id == 0:
+                    placement = ["G0","G1"]
+                elif selected_job.job_id == 1:
+                    placement = ["G6","G7"]
+                elif selected_job.job_id == 4:
+                    placement = ["G2","G3","G4","G5"]
+                else:
+                    placement = selected_job.jaca_placement
             #placement = ["G0","G4","G1","G5"]    
             
             if placement:

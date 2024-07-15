@@ -37,7 +37,8 @@ class Cluster():
         self.gandiva_4 = self.gv.gandiva_4
         self.gandiva_8 = self.gv.gandiva_8
         
-        self.gandiva_machine_dict = self.init_gandiva()#[self.gandiva_1, self.gandiva_2, self.gandiva_4]
+        if "gandiva" == self.gv.placer_name:
+            self.gandiva_machine_dict = self.init_gandiva()#[self.gandiva_1, self.gandiva_2, self.gandiva_4]
        
         
         
@@ -267,7 +268,28 @@ class Cluster():
             selected_gpus.append(sel_gpu)
  
         return selected_gpus
-    
+    def baseline_placement(self, job):
+        selected_gpus = list()
+        worker_num = job.worker_num
+        free_gpus = self.free_gpu_in_cluster()
+        # no enough gpus
+        if len(free_gpus) < worker_num:
+            print("No enough gpus for the job")
+            return selected_gpus
+        if job.job_id == 0:
+            selected_gpus = ["G0","G1"]
+            #placement = ["G0","G1","G4","G5"]
+        elif job.job_id == 1:
+            selected_gpus = ["G6","G7"]
+        elif job.job_id == 2:
+            #placement = ["G3","G4","G5","G2"]
+            selected_gpus = ["G2","G3","G4","G5"]#,"G2"]
+        elif job.job_id == 3:
+            #placement = ["G3","G4","G5","G2"]
+            selected_gpus = ["G2","G3","G4","G5"]#,"G2"]
+        elif job.job_id == 4:
+            selected_gpus = ["G2","G3","G4","G5"]
+        return selected_gpus
     def gandiva_placement(self, job):
         selected_gpus = list()
         worker_num = job.worker_num

@@ -1,0 +1,5 @@
+{"label": "mobilenet_v2", "id": 0, "parallel_spec": {"dp": 2}, "arrive_time": 0.0439845545932, "model_spec": {"epochs": 250, "model_name": "mobilenet_v2", "epoch_time": 2763.0}, "jaca_score": 1000000, "model_type": "vision", "worker_num": 2}
+{"label": "vgg16", "id": 1, "parallel_spec": {"dp": 2}, "arrive_time": 0.854142642977, "model_spec": {"epochs": 360, "model_name": "vgg16", "epoch_time": 11684.0}, "jaca_score": 1000000, "model_type": "vision", "worker_num": 2}
+{"label": "mobilenet_v2", "id": 2, "parallel_spec": {"dp": 4}, "arrive_time": 1.0439845545932, "model_spec": {"epochs": 100, "model_name": "mobilenet_v2", "epoch_time": 2763.0}, "jaca_score": 1000000, "model_type": "vision", "worker_num": 4}
+{"label": "GPT-350M", "id": 3, "parallel_spec": {"tp": 4, "pp": 1}, "arrive_time": 1.139752795897, "model_spec": {"iter_num": 2400, "iter_time": 824.0}, "jaca_score": 1000000, "model_type": "transformer", "worker_num": 4}
+{"label": "GPT-350M", "id": 4, "parallel_spec": {"tp": 1, "pp": 4}, "arrive_time": 1.1739752795897, "model_spec": {"iter_num": 8000, "iter_time": 252.0}, "jaca_score": 1000000, "model_type": "transformer", "worker_num": 4}
